@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@import "@fontsource-variable/instrument-sans/wght.css";
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+
+@layer base {
+  :root {
+    --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", "Instrument Sans Variable", system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #0c0b0a;
+    color: #f5f0ea;
+  }
+
+  body {
+    background-color: #0c0b0a;
+    color: #f5f0ea;
+    overflow-x: hidden;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0b0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b2824;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a880;
+}
+
+/* Ambient glow & glassmorphism */
+.glass-panel {
+  background: rgba(22, 20, 18, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  border-color: rgba(197, 168, 128, 0.35);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6), 0 0 20px 2px rgba(197, 168, 128, 0.08);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f5e6cc 0%, #d4af37 50%, #c5a880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(to right, rgba(212, 175, 55, 0.3), rgba(197, 168, 128, 0.05)) 1;
+}
+
+/* Subtle architectural grain */
+.bg-grain {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.mask-gradient {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
