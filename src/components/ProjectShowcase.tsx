@@ -39,8 +39,9 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
                 Featured Works
               </span>
             </div>
-            <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
-              Crafted by Bangalore's <span className="text-[#8c4830] italic">Top Architecture Firms.</span>
+            <h2 className="font-display text-4xl sm:text-6xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
+              CRAFTED BY BANGALORE'S <br />
+              <span className="text-[#8c4830]">TOP ARCHITECTURE FIRMS.</span>
             </h2>
           </div>
 
@@ -55,6 +56,7 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
                     ? "border-[#1c1917] bg-[#1c1917] text-[#faf8f5]"
                     : "border-[#e6e2dc] bg-[#faf8f5] text-[#78716c] hover:border-[#1c1917] hover:text-[#1c1917]"
                 }`}
+                data-cursor="FILTER"
               >
                 {cat}
               </button>
@@ -69,6 +71,7 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
               key={item.id}
               onClick={() => setSelectedItem(item)}
               className="group cursor-pointer bg-[#ffffff] border border-[#e6e2dc] hover:border-[#1c1917] transition-all duration-300 flex flex-col justify-between"
+              data-cursor="VIEW"
             >
               <div>
                 {/* Image */}
@@ -76,7 +79,7 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-[#faf8f5]/90 border border-[#e6e2dc] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#1c1917]">
@@ -90,10 +93,10 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
 
                 {/* Details */}
                 <div className="p-6">
-                  <span className="font-mono text-xs text-[#8c4830] block mb-1">
+                  <span className="font-mono text-xs text-[#8c4830] block mb-1 uppercase font-semibold">
                     Bangalore, Karnataka
                   </span>
-                  <h3 className="font-serif text-2xl text-[#1c1917] group-hover:text-[#8c4830] transition-colors">
+                  <h3 className="font-display text-xl sm:text-2xl uppercase font-bold text-[#1c1917] group-hover:text-[#8c4830] transition-colors tracking-tight">
                     {item.title}
                   </h3>
                 </div>
@@ -105,7 +108,7 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
                   JM Interiors Archive
                 </span>
                 <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[#1c1917] group-hover:text-[#8c4830] flex items-center gap-1">
-                  <span>View Details</span>
+                  <span>View Plate</span>
                   <span className="material-symbols-outlined text-[14px]">north_east</span>
                 </span>
               </div>
@@ -119,13 +122,13 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
         {selectedItem && (
           <DialogContent className="max-w-2xl bg-[#faf8f5] border border-[#e6e2dc] rounded-none p-6">
             <DialogHeader>
-              <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830]">
+              <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830] font-bold">
                 {selectedItem.category}
               </span>
-              <DialogTitle className="text-3xl font-serif text-[#1c1917]">
+              <DialogTitle className="text-2xl font-display uppercase font-bold text-[#1c1917] tracking-tight">
                 {selectedItem.title}
               </DialogTitle>
-              <DialogDescription className="text-xs text-[#78716c]">
+              <DialogDescription className="text-xs text-[#78716c] font-sans">
                 Crafted by JM Interiors in Bangalore with bespoke joinery and turnkey precision.
               </DialogDescription>
             </DialogHeader>
@@ -149,7 +152,7 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
                   onOpenConsultation();
                 }}
                 size="sm"
-                className="rounded-xs font-mono text-xs"
+                className="rounded-xs font-mono text-xs tracking-wider"
               >
                 Inquire For Similar Space
               </Button>

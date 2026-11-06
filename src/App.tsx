@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLenis } from "@/hooks/use-lenis";
+import { CustomCursor } from "@/components/CustomCursor";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { AboutSection } from "@/components/AboutSection";
@@ -15,7 +16,7 @@ import { ConsultationModal } from "@/components/ConsultationModal";
 import { CLIENT_DATA } from "@/data/site-data";
 
 export function App() {
-  // Lenis smooth momentum scrolling
+  // Lenis smooth momentum scrolling + GSAP ScrollTrigger ticker integration
   useLenis();
 
   const [consultationOpen, setConsultationOpen] = useState(false);
@@ -33,11 +34,14 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-[#1c1917] selection:bg-[#1c1917] selection:text-[#faf8f5] font-sans antialiased">
+      {/* GSAP Magnetic Trailing Custom Cursor */}
+      <CustomCursor />
+
       {/* Clean Navbar */}
       <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
       <main>
-        {/* 1. Hero Banner */}
+        {/* 1. Hero Banner with GSAP Masked Lines & Obys Grid Lines */}
         <Hero
           onOpenConsultation={() => setConsultationOpen(true)}
           onExploreServices={() => scrollToSection("services")}
@@ -89,6 +93,7 @@ export function App() {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3.5 py-2 bg-[#1c1917] text-[#faf8f5] hover:bg-[#322e2b] text-[11px] font-mono uppercase tracking-wider shadow-md transition-all border border-[#1c1917]"
           title="Direct WhatsApp"
+          data-cursor="CHAT"
         >
           <span className="material-symbols-outlined text-[16px] text-[#8c4830]">chat</span>
           <span>WhatsApp</span>

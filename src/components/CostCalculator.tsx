@@ -45,7 +45,7 @@ export function CostCalculator() {
   };
 
   const scopeRates: Record<ScopeType, number> = {
-    turnkey: 1750, // Rs per sqft
+    turnkey: 1750,
     modular: 1150,
     renovation: 1400,
   };
@@ -65,7 +65,7 @@ export function CostCalculator() {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `J&M Interiors Quotation Request\n\n` +
+    `JM Interiors Quotation Request\n\n` +
       `Configuration: ${configs[property].label}\n` +
       `Carpet Area: ${approxSqFt} sq.ft\n` +
       `Scope: ${scope.toUpperCase()}\n` +
@@ -86,11 +86,12 @@ export function CostCalculator() {
                 Preliminary Cost Modeling
               </span>
             </div>
-            <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
-              Honest estimates, <span className="text-[#8c4830] italic">line-by-line.</span>
+            <h2 className="font-display text-4xl sm:text-6xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
+              HONEST ESTIMATES, <br />
+              <span className="text-[#8c4830]">LINE-BY-LINE.</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[#57534e] leading-relaxed">
+          <p className="max-w-md text-sm text-[#57534e] leading-relaxed font-sans">
             Configure your parameters below to generate an itemized investment range based on real prevailing Bangalore material and labour rates.
           </p>
         </div>
@@ -101,7 +102,7 @@ export function CostCalculator() {
           <div className="lg:col-span-7 space-y-8 bg-[#ffffff] p-6 sm:p-8 border border-[#e6e2dc]">
             {/* Step 1: Configuration */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3">
+              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
                 01. Select Property Configuration
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -119,8 +120,9 @@ export function CostCalculator() {
                           ? "border-[#1c1917] bg-[#faf8f5] text-[#1c1917] shadow-xs"
                           : "border-[#e6e2dc] bg-[#ffffff] text-[#78716c] hover:border-[#1c1917] hover:text-[#1c1917]"
                       }`}
+                      data-cursor="SELECT"
                     >
-                      <div className="font-serif text-lg leading-tight mb-1">{configs[key].label}</div>
+                      <div className="font-display text-base uppercase font-bold leading-tight mb-1">{configs[key].label}</div>
                       <div className="text-[10px] font-mono text-[#78716c]">{configs[key].desc}</div>
                     </button>
                   );
@@ -131,11 +133,11 @@ export function CostCalculator() {
             {/* Step 2: Slider */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="font-mono text-xs uppercase tracking-widest text-[#78716c]">
+                <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] font-semibold">
                   02. Carpet Area (Square Feet)
                 </label>
-                <span className="font-serif text-2xl text-[#1c1917]">
-                  {approxSqFt.toLocaleString()} <span className="text-xs font-sans text-[#78716c]">sq.ft</span>
+                <span className="font-display text-2xl font-bold text-[#1c1917]">
+                  {approxSqFt.toLocaleString()} <span className="text-xs font-mono text-[#78716c]">sq.ft</span>
                 </span>
               </div>
               <Slider
@@ -154,7 +156,7 @@ export function CostCalculator() {
 
             {/* Step 3: Scope */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3">
+              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
                 03. Scope of Execution
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -173,9 +175,10 @@ export function CostCalculator() {
                           ? "border-[#1c1917] bg-[#faf8f5]"
                           : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#1c1917]"
                       }`}
+                      data-cursor="TOGGLE"
                     >
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-semibold text-[#1c1917]">{s.label}</span>
+                        <span className="text-xs font-bold uppercase font-sans text-[#1c1917]">{s.label}</span>
                         {isSelected && <span className="material-symbols-outlined text-[16px] text-[#8c4830]">check</span>}
                       </div>
                       <p className="text-[11px] text-[#78716c] leading-tight font-sans">{s.copy}</p>
@@ -187,7 +190,7 @@ export function CostCalculator() {
 
             {/* Step 4: Finish Specification */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3">
+              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
                 04. Material Specification Tier
               </label>
               <div className="space-y-2.5">
@@ -203,10 +206,11 @@ export function CostCalculator() {
                           ? "border-[#1c1917] bg-[#faf8f5]"
                           : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#1c1917]"
                       }`}
+                      data-cursor="SELECT"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-[#1c1917] uppercase tracking-wider">
+                          <span className="text-xs font-bold text-[#1c1917] uppercase tracking-wider font-sans">
                             {item.title}
                           </span>
                           {tierKey === "avant-garde" && (
@@ -237,11 +241,11 @@ export function CostCalculator() {
                 <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
                   Preliminary Estimate Slip
                 </span>
-                <span className="font-mono text-[11px] text-[#8c4830]">
+                <span className="font-mono text-[11px] text-[#8c4830] font-bold">
                   DOC-JM-{new Date().getFullYear()}
                 </span>
               </div>
-              <CardTitle className="text-xl font-serif mt-2">
+              <CardTitle className="text-xl font-display uppercase tracking-tight mt-2">
                 Turnkey Investment Schedule
               </CardTitle>
             </CardHeader>
@@ -252,9 +256,9 @@ export function CostCalculator() {
                 <span className="text-xs font-mono uppercase text-[#78716c] block mb-1">
                   Estimated Investment Range:
                 </span>
-                <div className="font-serif text-3xl sm:text-4xl text-[#1c1917] leading-none">
+                <div className="font-display text-3xl sm:text-4xl text-[#1c1917] leading-none uppercase">
                   <span>{formatINR(minCost)}</span>
-                  <span className="text-lg text-[#78716c] mx-2 font-sans font-light">to</span>
+                  <span className="text-lg text-[#78716c] mx-2 font-mono font-light">to</span>
                   <span>{formatINR(maxCost)}</span>
                 </div>
                 <p className="text-[11px] font-mono text-[#78716c] mt-2">
@@ -267,14 +271,14 @@ export function CostCalculator() {
                 <div className="flex items-start gap-2">
                   <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">schedule</span>
                   <div>
-                    <div className="text-xs font-semibold text-[#1c1917]">45 Working Days</div>
+                    <div className="text-xs font-bold text-[#1c1917] uppercase font-sans">45 Working Days</div>
                     <div className="text-[10px] font-mono text-[#78716c]">Guaranteed Handover</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">verified_user</span>
                   <div>
-                    <div className="text-xs font-semibold text-[#1c1917]">10-Year Warranty</div>
+                    <div className="text-xs font-bold text-[#1c1917] uppercase font-sans">10-Year Warranty</div>
                     <div className="text-[10px] font-mono text-[#78716c]">Hardware & Carcass</div>
                   </div>
                 </div>
@@ -282,7 +286,7 @@ export function CostCalculator() {
 
               {/* Inclusions */}
               <div className="space-y-2 text-xs text-[#57534e]">
-                <div className="font-mono text-[11px] uppercase tracking-wider text-[#1c1917] font-semibold mb-2">
+                <div className="font-mono text-[11px] uppercase tracking-wider text-[#1c1917] font-bold mb-2">
                   Standard Studio Deliverables:
                 </div>
                 {[
@@ -307,6 +311,7 @@ export function CostCalculator() {
                   rel="noopener noreferrer"
                   onClick={handleCelebrate}
                   className="w-full h-11 inline-flex items-center justify-center gap-2 bg-[#1c1917] hover:bg-[#322e2b] text-[#faf8f5] text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
+                  data-cursor="WHATSAPP"
                 >
                   <span className="material-symbols-outlined text-[18px]">chat</span>
                   <span>Send Estimate to J&M WhatsApp</span>

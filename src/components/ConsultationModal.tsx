@@ -1,6 +1,6 @@
 import { useState } from "react";
 import confetti from "canvas-confetti";
-import { BRAND_INFO } from "@/data/site-data";
+import { BRAND_INFO, CLIENT_DATA } from "@/data/site-data";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,6 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Check, MessageSquare, Send, ShieldCheck } from "lucide-react";
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -20,7 +19,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [projectType, setProjectType] = useState("Residential (2/3/4 BHK / Villa)");
+  const [projectType, setProjectType] = useState("Residential (Home Interiors & Furniture)");
   const [location, setLocation] = useState("Bengaluru");
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -37,7 +36,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
     });
 
     const waText = encodeURIComponent(
-      `New Consultation Request - J&M Interiors\n\n` +
+      `New Consultation Request - JM Interiors\n\n` +
         `Name: ${name}\n` +
         `Phone: ${phone}\n` +
         `Email: ${email || "Not specified"}\n` +
@@ -47,7 +46,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
     );
 
     setTimeout(() => {
-      window.open(`https://wa.me/${BRAND_INFO.whatsapp}?text=${waText}`, "_blank");
+      window.open(`https://wa.me/${CLIENT_DATA.contact.whatsapp}?text=${waText}`, "_blank");
     }, 1000);
   };
 
@@ -66,20 +65,20 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
         {!submitted ? (
           <div>
             <DialogHeader className="mb-5">
-              <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830] font-semibold">
-                Complimentary Site Inspection
+              <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830] font-bold">
+                COMPLIMENTARY SITE INSPECTION
               </span>
-              <DialogTitle className="text-3xl font-serif text-[#1c1917]">
-                Schedule an Architectural Audit
+              <DialogTitle className="text-3xl font-display uppercase font-bold text-[#1c1917] tracking-tight">
+                SCHEDULE AN ARCHITECTURAL AUDIT
               </DialogTitle>
-              <DialogDescription className="text-xs text-[#78716c]">
+              <DialogDescription className="text-xs text-[#78716c] font-sans">
                 Our senior architect will visit your site in Bengaluru for laser measurements, structural feasibility, and an itemized BOQ costing.
               </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                   Full Name *
                 </label>
                 <input
@@ -94,7 +93,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                     Phone / WhatsApp *
                   </label>
                   <input
@@ -108,7 +107,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
                 </div>
 
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                     Email Address
                   </label>
                   <input
@@ -123,7 +122,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                     Project Type
                   </label>
                   <select
@@ -131,15 +130,15 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
                     onChange={(e) => setProjectType(e.target.value)}
                     className="w-full px-3.5 py-2.5 bg-[#ffffff] border border-[#e6e2dc] text-xs text-[#1c1917] outline-none focus:border-[#1c1917] rounded-none"
                   >
-                    <option value="Residential (2/3/4 BHK / Villa)">Residential (2/3/4 BHK / Villa)</option>
-                    <option value="Commercial Office Fitout">Commercial Office Fitout</option>
-                    <option value="Modular Kitchen & Pantry">Modular Kitchen & Pantry</option>
-                    <option value="Bespoke Loose Joinery">Bespoke Loose Joinery</option>
+                    <option value="Office Furniture & Workstations">Office Furniture & Workstations</option>
+                    <option value="Office Interiors & Fitouts">Office Interiors & Fitouts</option>
+                    <option value="Home Furniture & Joinery">Home Furniture & Joinery</option>
+                    <option value="Home Interiors & Turnkey Fitout">Home Interiors & Turnkey Fitout</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                     Site Location in Bengaluru
                   </label>
                   <input
@@ -153,7 +152,7 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
               </div>
 
               <div>
-                <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1">
+                <label className="font-mono text-[11px] uppercase tracking-wider text-[#78716c] block mb-1 font-semibold">
                   Brief Project Requirements
                 </label>
                 <textarea
@@ -165,13 +164,13 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full rounded-none tracking-widest text-xs mt-2">
-                <Send className="w-3.5 h-3.5 mr-2" />
+              <Button type="submit" size="lg" className="w-full rounded-none tracking-widest text-xs font-mono mt-2" data-cursor="SUBMIT">
+                <span className="material-symbols-outlined text-[16px] mr-2">send</span>
                 <span>Submit & Open Studio WhatsApp</span>
               </Button>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-[#a8a29e] pt-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#8c4830]" />
+              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-[#78716c] pt-1">
+                <span className="material-symbols-outlined text-[14px] text-[#8c4830]">verified</span>
                 <span>Zero sales harassment. Response directly from project architects.</span>
               </div>
             </form>
@@ -179,29 +178,30 @@ export function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
         ) : (
           <div className="py-6 text-center space-y-4">
             <div className="w-12 h-12 rounded-full border border-[#1c1917] bg-[#1c1917] text-[#faf8f5] flex items-center justify-center mx-auto">
-              <Check className="w-6 h-6" />
+              <span className="material-symbols-outlined text-[24px]">check</span>
             </div>
 
-            <DialogTitle className="text-2xl font-serif">
+            <DialogTitle className="text-2xl font-display uppercase font-bold text-[#1c1917]">
               Consultation Scheduled
             </DialogTitle>
 
-            <p className="text-xs text-[#57534e] max-w-sm mx-auto">
-              Thank you, <strong className="text-[#1c1917]">{name}</strong>. Our senior site engineer will contact you at <span className="font-mono text-[#8c4830]">{phone}</span> to coordinate the site audit.
+            <p className="text-xs text-[#57534e] max-w-sm mx-auto font-sans">
+              Thank you, <strong className="text-[#1c1917]">{name}</strong>. Our senior site engineer will contact you at <span className="font-mono text-[#8c4830] font-bold">{phone}</span> to coordinate the site audit.
             </p>
 
             <div className="pt-4 flex flex-col gap-2">
               <a
-                href={`https://wa.me/${BRAND_INFO.whatsapp}?text=Hello%20JM%20Interiors!%20My%20name%20is%20${encodeURIComponent(name)}.`}
+                href={`https://wa.me/${CLIENT_DATA.contact.whatsapp}?text=Hello%20JM%20Interiors!%20My%20name%20is%20${encodeURIComponent(name)}.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3 bg-[#1c1917] text-[#faf8f5] text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2"
+                data-cursor="WHATSAPP"
               >
-                <MessageSquare className="w-3.5 h-3.5" />
+                <span className="material-symbols-outlined text-[16px]">chat</span>
                 <span>Open WhatsApp Direct</span>
               </a>
 
-              <Button onClick={handleReset} variant="outline" size="sm" className="rounded-none">
+              <Button onClick={handleReset} variant="outline" size="sm" className="rounded-none font-mono text-xs">
                 Done
               </Button>
             </div>

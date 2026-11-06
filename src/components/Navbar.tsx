@@ -45,14 +45,14 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Mark */}
+        {/* Brand Mark with Syne geometric boldness */}
         <a href="#" className="flex items-center gap-3 shrink-0 group">
-          <span className="font-serif text-2xl sm:text-[1.65rem] font-normal tracking-tight text-[#1c1917] group-hover:text-[#8c4830] transition-colors whitespace-nowrap">
+          <span className="font-display text-xl sm:text-2xl tracking-tighter text-[#1c1917] group-hover:text-[#8c4830] transition-colors whitespace-nowrap uppercase">
             JM Interiors
           </span>
           <span className="hidden sm:inline-block h-4 w-px bg-[#d6d0c7]" />
-          <span className="hidden sm:inline-block text-[11px] font-mono tracking-widest text-[#78716c] uppercase whitespace-nowrap">
-            Bangalore
+          <span className="hidden sm:inline-block text-[10px] font-mono tracking-widest text-[#78716c] uppercase whitespace-nowrap">
+            Bengaluru / Architectural Fitouts
           </span>
         </a>
 
@@ -109,7 +109,7 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
           <div className="flex flex-col gap-3">
             <div className="text-[10px] font-mono uppercase tracking-widest text-[#78716c] pb-2 border-b border-[#e6e2dc] flex items-center justify-between">
               <span>JM Interiors</span>
-              <span>Bangalore, Karnataka</span>
+              <span>Bengaluru, Karnataka</span>
             </div>
 
             {navLinks.map((link) => (

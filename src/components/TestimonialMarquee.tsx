@@ -20,12 +20,12 @@ export function TestimonialMarquee() {
       {/* Brand Specifications Ticker */}
       <div className="mb-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-6 flex items-center justify-between text-xs font-mono text-[#78716c] uppercase tracking-wider">
-          <span>01 / Material & Hardware Partners</span>
-          <span>Certified Specifications</span>
+          <span>01 / Material & Hardware Specifications</span>
+          <span>Verified International Partners</span>
         </div>
 
         <div className="w-full border-y border-[#e6e2dc] bg-[#ffffff] py-4 overflow-hidden mask-edge">
-          <div className="flex animate-marquee gap-12 items-center text-xs font-mono font-medium tracking-widest text-[#57534e] uppercase">
+          <div className="flex animate-marquee gap-12 items-center text-xs font-mono font-bold tracking-widest text-[#57534e] uppercase">
             {brandPartners.concat(brandPartners).map((partner, idx) => (
               <span key={idx} className="flex items-center gap-12">
                 <span>{partner}</span>
@@ -48,11 +48,12 @@ export function TestimonialMarquee() {
                 Client Reviews
               </span>
             </div>
-            <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
-              What Our <span className="text-[#8c4830] italic">Client's Say?</span>
+            <h2 className="font-display text-4xl sm:text-6xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
+              WHAT OUR <br />
+              <span className="text-[#8c4830]">CLIENT'S SAY?</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[#57534e] leading-relaxed">
+          <p className="max-w-md text-sm text-[#57534e] leading-relaxed font-sans">
             We value our clients' feedback, showcasing genuine experiences and heartfelt stories that reflect our commitment to quality, creativity, and lasting relationships.
           </p>
         </div>
@@ -61,23 +62,24 @@ export function TestimonialMarquee() {
           {CLIENT_DATA.testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="p-8 bg-[#ffffff] border border-[#e6e2dc] flex flex-col justify-between"
+              className="p-8 bg-[#ffffff] border border-[#e6e2dc] flex flex-col justify-between group hover:border-[#1c1917] transition-all"
+              data-cursor="REVIEW"
             >
               <div>
                 <span className="material-symbols-outlined text-[#8c4830] text-[32px] mb-4">
                   format_quote
                 </span>
 
-                <p className="font-serif text-xl text-[#1c1917] leading-relaxed">
+                <p className="font-sans text-base sm:text-lg text-[#1c1917] leading-relaxed font-medium">
                   "{t.quote}"
                 </p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-[#f0ebe3]">
-                <div className="font-serif text-lg text-[#1c1917] font-medium">{t.author}</div>
-                <div className="text-xs text-[#78716c] font-sans">{t.role}</div>
+                <div className="font-display text-lg uppercase font-bold text-[#1c1917] tracking-tight">{t.author}</div>
+                <div className="text-xs text-[#78716c] font-mono mt-0.5">{t.role}</div>
                 {t.company && (
-                  <div className="text-[11px] font-mono text-[#8c4830] mt-0.5">{t.company}</div>
+                  <div className="text-[11px] font-mono text-[#8c4830] mt-0.5 font-bold uppercase">{t.company}</div>
                 )}
               </div>
             </div>

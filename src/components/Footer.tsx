@@ -12,23 +12,29 @@ export function Footer({ onOpenConsultation }: FooterProps) {
         {/* Top Callout */}
         <div className="pb-16 mb-16 border-b border-[#e6e2dc] flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#8c4830] font-semibold">
-              Ready to Transform Your Workspace?
+            <span className="font-mono text-xs uppercase tracking-widest text-[#8c4830] font-bold">
+              READY TO TRANSFORM YOUR WORKSPACE?
             </span>
-            <h3 className="font-serif text-3xl sm:text-5xl text-[#1c1917] mt-2">
-              Let JM Interiors create an inspiring space for you.
+            <h3 className="font-display text-3xl sm:text-5xl uppercase font-extrabold text-[#1c1917] mt-2 tracking-tight">
+              LET JM INTERIORS CREATE AN INSPIRING SPACE FOR YOU.
             </h3>
-            <p className="text-xs sm:text-sm text-[#57534e] mt-2 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#57534e] mt-2 max-w-xl font-sans">
               Thank you for choosing us to transform your space into something truly beautiful, functional, and inspiring.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 shrink-0">
-            <Button onClick={onOpenConsultation} size="lg" className="rounded-xs font-mono text-xs">
+            <Button
+              onClick={onOpenConsultation}
+              size="lg"
+              className="rounded-xs font-mono text-xs tracking-wider"
+              data-cursor="CONTACT"
+            >
               Contact Our Experts
             </Button>
             <a
               href={`tel:${CLIENT_DATA.contact.rawPhone}`}
               className="px-6 py-3 border border-[#d6d0c7] hover:border-[#1c1917] text-xs font-mono font-semibold transition-colors flex items-center gap-2"
+              data-cursor="CALL"
             >
               <span className="material-symbols-outlined text-[16px] text-[#8c4830]">call</span>
               <span>{CLIENT_DATA.contact.phone}</span>
@@ -40,7 +46,7 @@ export function Footer({ onOpenConsultation }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-[#e6e2dc]">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <div className="font-serif text-2xl font-normal text-[#1c1917] mb-1">
+            <div className="font-display text-2xl uppercase font-bold text-[#1c1917] mb-1 tracking-tight">
               {CLIENT_DATA.brandName}
             </div>
             <div className="text-[10px] font-mono uppercase tracking-widest text-[#78716c] mb-4">
@@ -51,20 +57,20 @@ export function Footer({ onOpenConsultation }: FooterProps) {
             </p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ffffff] border border-[#e6e2dc] text-xs text-[#1c1917]">
               <span className="material-symbols-outlined text-[16px] text-[#8c4830]">verified</span>
-              <span className="font-mono text-[11px]">10+ Years of Interior & Architecture Expertise</span>
+              <span className="font-mono text-[11px] font-bold">10+ Years of Interior & Architecture Expertise</span>
             </div>
           </div>
 
           {/* Contact Details */}
           <div className="lg:col-span-4">
-            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
-              Contact & Studio
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4 font-bold">
+              CONTACT & STUDIO
             </div>
             <div className="space-y-3.5 text-xs text-[#57534e]">
               <div className="flex items-start gap-2.5">
                 <span className="material-symbols-outlined text-[18px] text-[#8c4830] shrink-0 mt-0.5">location_on</span>
                 <div>
-                  <p className="text-[#1c1917] font-medium leading-relaxed">
+                  <p className="text-[#1c1917] font-medium leading-relaxed font-sans">
                     {CLIENT_DATA.contact.address}
                   </p>
                   <a
@@ -103,8 +109,8 @@ export function Footer({ onOpenConsultation }: FooterProps) {
 
           {/* Services */}
           <div className="lg:col-span-2">
-            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
-              Services
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4 font-bold">
+              SERVICES
             </div>
             <ul className="space-y-2 text-xs font-mono">
               <li>
@@ -132,8 +138,8 @@ export function Footer({ onOpenConsultation }: FooterProps) {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
-              Quick Links
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4 font-bold">
+              QUICK LINKS
             </div>
             <ul className="space-y-2 text-xs font-mono">
               <li>

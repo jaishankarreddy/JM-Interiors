@@ -21,10 +21,11 @@ export function FAQSection() {
               Questions & Answers
             </span>
           </div>
-          <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
-            Most Commonly Asked <span className="text-[#8c4830] italic">Questions About Us.</span>
+          <h2 className="font-display text-4xl sm:text-6xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
+            MOST COMMONLY ASKED <br />
+            <span className="text-[#8c4830]">QUESTIONS ABOUT US.</span>
           </h2>
-          <p className="max-w-xl mx-auto text-sm text-[#57534e] mt-3">
+          <p className="max-w-xl mx-auto text-sm text-[#57534e] mt-3 font-sans">
             Learn more about our collaborative architecture process, commercial & residential capabilities, and after-sale support in Bangalore.
           </p>
         </div>
@@ -32,9 +33,13 @@ export function FAQSection() {
         {/* Exact Questions & Answers from jandminteriors.in */}
         <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
           {CLIENT_DATA.faqs.map((faq, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`}>
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
+            <AccordionItem key={idx} value={`item-${idx}`} className="border-b border-[#e6e2dc] py-2">
+              <AccordionTrigger className="font-display text-lg sm:text-xl font-bold uppercase tracking-tight text-[#1c1917] hover:text-[#8c4830]">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="font-sans text-sm text-[#57534e] leading-relaxed">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
@@ -42,10 +47,10 @@ export function FAQSection() {
         {/* Contact Strip */}
         <div className="mt-12 p-6 border border-[#e6e2dc] bg-[#faf8f5] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <div className="font-mono text-xs uppercase text-[#1c1917] font-semibold">
-              Ready to Transform Your Workspace?
+            <div className="font-mono text-xs uppercase text-[#1c1917] font-bold">
+              READY TO TRANSFORM YOUR WORKSPACE?
             </div>
-            <div className="text-xs text-[#78716c] mt-0.5">
+            <div className="text-xs text-[#78716c] mt-0.5 font-sans">
               Let JM Interiors — one of the leading architecture companies in Bangalore — create an inspiring office or home for you.
             </div>
           </div>
