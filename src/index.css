@@ -5,20 +5,48 @@
 
 @layer base {
   :root {
-    --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
-    --font-sans: "Plus Jakarta Sans", "Instrument Sans Variable", system-ui, -apple-system, sans-serif;
+    --font-serif: "Instrument Serif", Georgia, serif;
+    --font-sans: "Instrument Sans Variable", system-ui, -apple-system, sans-serif;
+
+    /* Light Theme Architectural Stone System */
+    --background: 36 25% 98%; /* #FAF8F5 */
+    --foreground: 24 10% 11%; /* #1C1917 */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 24 10% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 11%;
+    --primary: 24 10% 11%; /* Deep Carbon */
+    --primary-foreground: 36 25% 98%;
+    --secondary: 33 18% 94%; /* Warm Stone Cream */
+    --secondary-foreground: 24 10% 11%;
+    --muted: 33 16% 94%;
+    --muted-foreground: 25 6% 44%; /* #78716C */
+    --accent: 30 18% 92%;
+    --accent-foreground: 24 10% 11%;
+    --clay: 16 48% 37%; /* Architectural Terracotta #8C4830 */
+    --clay-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 33 15% 88%; /* Hairline Stone Border #E6E2DC */
+    --input: 33 15% 88%;
+    --ring: 24 10% 11%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    border-color: #e6e2dc;
   }
 
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
-    background-color: #0c0b0a;
-    color: #f5f0ea;
+    background-color: #faf8f5;
+    color: #1c1917;
   }
 
   body {
-    background-color: #0c0b0a;
-    color: #f5f0ea;
+    background-color: #faf8f5;
+    color: #1c1917;
     overflow-x: hidden;
   }
 }
@@ -31,67 +59,29 @@
   font-family: var(--font-sans);
 }
 
-/* Custom luxury scrollbar */
+/* Subtle architectural paper texture */
+.bg-paper {
+  background-color: #faf8f5;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0b0a;
+  background: #faf8f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2824;
+  background: #d6d0c7;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c5a880;
+  background: #8c4830;
 }
 
-/* Ambient glow & glassmorphism */
-.glass-panel {
-  background: rgba(22, 20, 18, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(197, 168, 128, 0.15);
-}
-
-.glass-panel-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glass-panel-hover:hover {
-  border-color: rgba(197, 168, 128, 0.35);
-  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6), 0 0 20px 2px rgba(197, 168, 128, 0.08);
-}
-
-.gold-gradient-text {
-  background: linear-gradient(135deg, #f5e6cc 0%, #d4af37 50%, #c5a880 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gold-border-gradient {
-  border-image: linear-gradient(to right, rgba(212, 175, 55, 0.3), rgba(197, 168, 128, 0.05)) 1;
-}
-
-/* Subtle architectural grain */
-.bg-grain {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 0);
-  background-size: 28px 28px;
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2.5s infinite;
-}
-
+/* Marquee infinite ticker */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -104,14 +94,14 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-.mask-gradient {
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+.mask-edge {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }

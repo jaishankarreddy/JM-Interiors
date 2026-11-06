@@ -1,5 +1,6 @@
 import { BRAND_INFO } from "@/data/site-data";
-import { Phone, Mail, MapPin, Clock, ArrowUpRight, ShieldCheck, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Phone, Mail, MapPin, Clock, ArrowUpRight, ShieldCheck } from "lucide-react";
 
 interface FooterProps {
   onOpenConsultation: () => void;
@@ -22,171 +23,159 @@ export function Footer({ onOpenConsultation }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-[#080707] border-t border-[#23211f] pt-20 pb-12 px-5 md:px-8 text-[#a8a29a] relative">
+    <footer className="bg-[#faf8f5] text-[#1c1917] pt-20 pb-12 px-6 lg:px-12 border-t border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
-        {/* Top Call to Action Banner */}
-        <div className="pb-16 mb-16 border-b border-[#1c1a18] flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+        {/* Top Callout */}
+        <div className="pb-16 mb-16 border-b border-[#e6e2dc] flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#d4af37]">
-              Ready to transform your residential or commercial space?
+            <span className="font-mono text-xs uppercase tracking-widest text-[#8c4830] font-semibold">
+              Commence Your Architectural Project
             </span>
-            <h3 className="font-serif text-3xl sm:text-5xl text-[#f5f0ea] mt-2">
-              Let's create something timeless together.
+            <h3 className="font-serif text-3xl sm:text-5xl text-[#1c1917] mt-2">
+              Transforming spaces across Bengaluru.
             </h3>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={onOpenConsultation}
-              className="px-7 py-4 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38e2d] text-[#0c0b0a] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-xl shadow-[#d4af37]/20 transition-all cursor-pointer"
-            >
-              Book Free Site Consultation
-            </button>
+            <Button onClick={onOpenConsultation} size="lg" className="rounded-xs">
+              Book Site Consultation
+            </Button>
             <a
               href={`tel:${BRAND_INFO.rawPhone}`}
-              className="px-6 py-4 rounded-full bg-[#181615] hover:bg-[#22201d] text-xs font-semibold text-[#f5f0ea] border border-[#332f2b] transition-all flex items-center gap-2"
+              className="px-6 py-3 border border-[#d6d0c7] hover:border-[#1c1917] text-xs font-mono font-semibold transition-colors flex items-center gap-2"
             >
-              <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span>Call +91 9035 672 941</span>
+              <Phone className="w-3.5 h-3.5 text-[#8c4830]" />
+              <span>{BRAND_INFO.phone}</span>
             </a>
           </div>
         </div>
 
-        {/* 4 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-[#1c1a18]">
-          {/* Col 1: Brand Info */}
+        {/* 4 Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-[#e6e2dc]">
+          {/* Brand */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2a2622] to-[#141312] border border-[#c5a880]/30 flex items-center justify-center font-serif text-[#d4af37] text-xl font-bold">
-                JM
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-lg tracking-wider font-semibold text-[#f5f0ea]">
-                  J&M INTERIORS
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#c5a880]">
-                  And Decorators
-                </span>
-              </div>
+            <div className="font-serif text-2xl font-normal text-[#1c1917] mb-1">
+              J&M Interiors
             </div>
-
-            <p className="text-xs sm:text-sm text-[#8c857b] leading-relaxed mb-6">
-              Bengaluru's premier turnkey architecture, luxury residential interior, and commercial workspace fitout studio. Backed by in-house joinery craftsmanship and a 45-day guaranteed delivery protocol.
+            <div className="text-[10px] font-mono uppercase tracking-widest text-[#78716c] mb-4">
+              J M Interior And Decorators
+            </div>
+            <p className="text-xs sm:text-sm text-[#57534e] leading-relaxed mb-6 font-sans">
+              Turnkey architectural interior contracting, commercial workspace fitouts, and bespoke timber furniture joinery based in Bengaluru, Karnataka.
             </p>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#141312] border border-[#262422] text-xs text-[#d8d2ca]">
-              <ShieldCheck className="w-4 h-4 text-[#d4af37]" />
-              <span>10-Year Comprehensive Warranty</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ffffff] border border-[#e6e2dc] text-xs text-[#1c1917]">
+              <ShieldCheck className="w-4 h-4 text-[#8c4830]" />
+              <span className="font-mono text-[11px]">10-Year Hardware & Carcass Warranty</span>
             </div>
           </div>
 
-          {/* Col 2: Direct Contact */}
+          {/* Contact Details */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#f5f0ea] font-semibold mb-5">
-              Studio & Contact
-            </h4>
-            <div className="space-y-4 text-xs">
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
+              Studio & Workshop
+            </div>
+            <div className="space-y-3.5 text-xs text-[#57534e]">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#8c4830] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-[#f5f0ea] font-medium leading-relaxed">
+                  <p className="text-[#1c1917] font-medium leading-relaxed">
                     #2, AECS Layout B Block,
                   </p>
-                  <p className="text-[#8c857b]">Chikka Begur, Bengaluru - 560068</p>
-                  <p className="text-[#8c857b]">Karnataka, India</p>
+                  <p>Chikka Begur, Bengaluru – 560068</p>
+                  <p>Karnataka, India</p>
                   <a
                     href={BRAND_INFO.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] text-[#c5a880] hover:text-[#d4af37] mt-1.5 font-medium"
+                    className="inline-flex items-center gap-1 font-mono text-[11px] text-[#8c4830] hover:underline mt-1"
                   >
-                    <span>View on Google Maps</span>
+                    <span>Google Maps Directions</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 pt-2">
-                <Phone className="w-4 h-4 text-[#d4af37] shrink-0" />
+              <div className="flex items-center gap-2.5 pt-1">
+                <Phone className="w-4 h-4 text-[#8c4830] shrink-0" />
                 <a
                   href={`tel:${BRAND_INFO.rawPhone}`}
-                  className="text-[#f5f0ea] hover:text-[#d4af37] transition-colors font-medium"
+                  className="font-mono text-[#1c1917] hover:text-[#8c4830] transition-colors"
                 >
                   {BRAND_INFO.phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#d4af37] shrink-0" />
+                <Mail className="w-4 h-4 text-[#8c4830] shrink-0" />
                 <a
                   href={`mailto:${BRAND_INFO.email}`}
-                  className="text-[#f5f0ea] hover:text-[#d4af37] transition-colors break-all"
+                  className="font-mono text-[#1c1917] hover:text-[#8c4830] transition-colors break-all"
                 >
                   {BRAND_INFO.email}
                 </a>
               </div>
 
-              <div className="flex items-start gap-2.5 pt-2 text-[#78726a]">
-                <Clock className="w-4 h-4 text-[#78726a] shrink-0 mt-0.5" />
-                <div>
-                  <div>Mon - Sat: 9:30 AM - 7:30 PM</div>
-                  <div className="text-[11px]">Sunday: By Prior Appointment</div>
+              <div className="flex items-start gap-2.5 pt-1 text-[#78716c]">
+                <Clock className="w-4 h-4 text-[#8c4830] shrink-0 mt-0.5" />
+                <div className="text-[11px] font-mono">
+                  <div>Mon – Sat: 9:30 AM to 7:30 PM</div>
+                  <div>Sunday: By Scheduled Appointment</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Col 3: Services */}
+          {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs uppercase tracking-widest text-[#f5f0ea] font-semibold mb-5">
-              Capabilities
-            </h4>
-            <ul className="space-y-2.5 text-xs">
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
+              Index
+            </div>
+            <ul className="space-y-2 text-xs font-mono">
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Office Interiors
+                <a href="#services" className="hover:text-[#8c4830] transition-colors">
+                  01 / Capabilities
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Home Interiors
+                <a href="#portfolio" className="hover:text-[#8c4830] transition-colors">
+                  02 / Portfolio
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Modular Kitchens
+                <a href="#transformation" className="hover:text-[#8c4830] transition-colors">
+                  03 / Transformation
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Workspace Furniture
+                <a href="#calculator" className="hover:text-[#8c4830] transition-colors">
+                  04 / Cost Estimator
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Custom Woodwork
+                <a href="#process" className="hover:text-[#8c4830] transition-colors">
+                  05 / Process
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Turnkey Execution
+                <a href="#faq" className="hover:text-[#8c4830] transition-colors">
+                  06 / FAQs
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Service Areas in Bangalore */}
+          {/* Service Zones */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#f5f0ea] font-semibold mb-5">
-              Service Areas • Bengaluru
-            </h4>
-            <p className="text-xs text-[#78726a] mb-3">
-              We undertake premium architectural and interior projects across key Bengaluru zones:
+            <div className="font-mono text-xs uppercase tracking-widest text-[#78716c] mb-4">
+              Active Zones • Bengaluru
+            </div>
+            <p className="text-xs text-[#78716c] mb-3">
+              Currently executing turnkey projects across key Bangalore sectors:
             </p>
             <div className="flex flex-wrap gap-1.5">
               {serviceAreas.map((area) => (
                 <span
                   key={area}
-                  className="text-[11px] px-2.5 py-1 rounded-md bg-[#141312] border border-[#23211f] text-[#a8a29a]"
+                  className="text-[11px] font-mono px-2 py-0.5 bg-[#ffffff] border border-[#e6e2dc] text-[#57534e]"
                 >
                   {area}
                 </span>
@@ -195,13 +184,11 @@ export function Footer({ onOpenConsultation }: FooterProps) {
           </div>
         </div>
 
-        {/* Bottom Sub-footer */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#666059] gap-4">
-          <p>© {new Date().getFullYear()} J M Interior And Decorators (J&M Interiors). All rights reserved.</p>
-          <p className="flex items-center gap-1.5 text-[11px]">
-            <span>Architectural Revamp & Demo Showcase for Client Outreach</span>
-            <span className="text-[#d4af37]">•</span>
-            <span className="text-[#a8a29a]">Bengaluru</span>
+        {/* Sub-footer */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#78716c] gap-4">
+          <p>© {new Date().getFullYear()} J M Interior And Decorators. All rights reserved.</p>
+          <p>
+            Studio Revamp & Freelance Pitch Showcase • Bengaluru
           </p>
         </div>
       </div>

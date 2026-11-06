@@ -1,5 +1,7 @@
 import { PROCESS_STEPS } from "@/data/site-data";
-import { GitCommit, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Check } from "lucide-react";
 
 interface ProcessTimelineProps {
   onOpenConsultation: () => void;
@@ -7,80 +9,76 @@ interface ProcessTimelineProps {
 
 export function ProcessTimeline({ onOpenConsultation }: ProcessTimelineProps) {
   return (
-    <section id="process" className="py-24 px-5 md:px-8 bg-[#0e0d0c] relative">
+    <section id="process" className="py-24 px-6 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1c1a18] border border-[#c5a880]/30 text-xs text-[#c5a880] uppercase tracking-widest mb-4">
-            <GitCommit className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span>The 4-Stage Execution Blueprint</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-[#e6e2dc] gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Badge variant="clay">Methodology</Badge>
+              <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
+                Chronological Execution Protocol
+              </span>
+            </div>
+            <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
+              Predictable execution, <span className="text-[#8c4830] italic">zero surprises.</span>
+            </h2>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#f5f0ea] leading-tight">
-            How We Build <span className="text-[#d4af37] italic">Without Hassle.</span>
-          </h2>
-          <p className="mt-4 text-[#a8a29a] text-sm sm:text-base leading-relaxed">
-            Eliminating the traditional construction anxiety. A milestone-driven process with digital weekly tracking and zero surprise expenses.
+          <p className="max-w-md text-sm text-[#57534e] leading-relaxed">
+            Eliminating the traditional construction anxiety through a milestone-driven process backed by digital weekly reporting and strict delivery windows.
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {PROCESS_STEPS.map((step, idx) => (
+        {/* 4 Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-[#e6e2dc]">
+          {PROCESS_STEPS.map((step) => (
             <div
               key={step.step}
-              className="group relative rounded-3xl p-7 bg-[#141312] border border-[#262422] hover:border-[#c5a880]/50 transition-all duration-300 flex flex-col justify-between"
+              className="border-r border-b border-[#e6e2dc] p-8 bg-[#ffffff] flex flex-col justify-between"
             >
               <div>
-                {/* Step number & duration */}
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#211f1d]">
-                  <span className="font-serif text-4xl font-bold text-[#c5a880]/40 group-hover:text-[#d4af37] transition-colors">
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#f0ebe3]">
+                  <span className="font-serif text-4xl text-[#8c4830] font-normal">
                     {step.step}
                   </span>
-                  <span className="text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#1e1c1a] border border-[#332f2b] text-[#d4af37] font-semibold">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#78716c] bg-[#f5f2ed] px-2 py-0.5 border border-[#e8e2d8]">
                     {step.duration}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-xl sm:text-2xl text-[#f5f0ea] group-hover:text-[#d4af37] transition-colors mb-3">
+                <h3 className="font-serif text-2xl text-[#1c1917] mb-3">
                   {step.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#8c857b] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#57534e] leading-relaxed font-sans">
                   {step.description}
                 </p>
               </div>
 
-              {/* Step indicator footer */}
-              <div className="mt-6 pt-4 border-t border-[#1f1d1b] flex items-center justify-between text-xs text-[#524d47]">
-                <span className="flex items-center gap-1.5 text-[#a8a29a]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#d4af37]" />
-                  Verified Milestone
+              <div className="mt-8 pt-4 border-t border-[#f0ebe3] flex items-center justify-between font-mono text-[11px] text-[#78716c]">
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#8c4830]" />
+                  Sign-off Milestone
                 </span>
-                <span className="font-mono">Stage {idx + 1}/4</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-[#1c1a18] via-[#24211e] to-[#1c1a18] border border-[#c5a880]/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="mt-12 p-8 border border-[#e6e2dc] bg-[#ffffff] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h4 className="font-serif text-2xl text-[#f5f0ea]">
-              Ready to start with Step 01?
-            </h4>
-            <p className="text-xs sm:text-sm text-[#a8a29a] mt-1">
-              Book a zero-obligation on-site structural audit with our principal design engineer in Bengaluru.
+            <div className="font-mono text-xs uppercase tracking-wider text-[#8c4830] font-semibold mb-1">
+              Step 01 / Complimentary Site Audit
+            </div>
+            <p className="font-serif text-2xl text-[#1c1917]">
+              Request our principal architect to inspect your site in Bengaluru.
             </p>
           </div>
-
-          <button
-            onClick={onOpenConsultation}
-            className="px-6 py-3.5 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b38e2d] text-[#0c0b0a] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 flex items-center gap-2 cursor-pointer shrink-0 transition-all"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>Schedule Free Site Audit</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <Button onClick={onOpenConsultation} size="lg" className="rounded-xs shrink-0">
+            <span>Schedule Site Visit</span>
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </div>
     </section>

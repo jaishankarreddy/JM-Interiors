@@ -12,10 +12,10 @@ import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { BRAND_INFO } from "@/data/site-data";
-import { MessageCircle, Phone, ArrowUp } from "lucide-react";
+import { MessageCircle, ArrowUp } from "lucide-react";
 
 export function App() {
-  // Initialize Lenis smooth scroll + GSAP integration
+  // Lenis smooth momentum scrolling
   useLenis();
 
   const [consultationOpen, setConsultationOpen] = useState(false);
@@ -32,74 +32,71 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0b0a] text-[#f5f0ea] selection:bg-[#c5a880] selection:text-[#0c0b0a] relative font-sans">
-      {/* Navigation Bar */}
+    <div className="min-h-screen bg-[#faf8f5] text-[#1c1917] selection:bg-[#1c1917] selection:text-[#faf8f5] font-sans antialiased">
+      {/* Editorial Navigation */}
       <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
-      {/* Main Content Stream */}
       <main>
-        {/* Hero Section */}
+        {/* Architectural Hero */}
         <Hero
           onOpenConsultation={() => setConsultationOpen(true)}
           onExploreProjects={() => scrollToSection("portfolio")}
           onOpenCalculator={() => scrollToSection("calculator")}
         />
 
-        {/* Interactive Transformation Before / After */}
-        <BeforeAfterSlider />
+        {/* Selected Project Showcase */}
+        <ProjectShowcase onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Capabilities & Bento Services */}
+        {/* Integrated Capabilities Grid */}
         <BentoServices
           onSelectService={() => setConsultationOpen(true)}
           onOpenConsultation={() => setConsultationOpen(true)}
         />
 
-        {/* Interactive Cost & Timeline Calculator */}
+        {/* Interactive Before & After Transformation */}
+        <BeforeAfterSlider />
+
+        {/* Interactive Architectural Cost Estimator */}
         <CostCalculator />
 
-        {/* Portfolio Showcase with Filters & Modal */}
-        <ProjectShowcase onOpenConsultation={() => setConsultationOpen(true)} />
-
-        {/* 4-Step Working Process */}
+        {/* 4-Stage Chronological Execution Protocol */}
         <ProcessTimeline onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Brand Partners Marquee & Testimonials */}
+        {/* Hardware Specifications Ticker & Client Accounts */}
         <TestimonialMarquee />
 
-        {/* FAQ Section */}
+        {/* Architectural FAQ */}
         <FAQSection />
       </main>
 
       {/* Footer */}
       <Footer onOpenConsultation={() => setConsultationOpen(true)} />
 
-      {/* Free Site Consultation Modal */}
+      {/* Consultation Dialog */}
       <ConsultationModal
         isOpen={consultationOpen}
         onClose={() => setConsultationOpen(false)}
       />
 
-      {/* Floating Action Buttons (WhatsApp + Call) */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+      {/* Floating Action Elements */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
         <a
-          href={`https://wa.me/${BRAND_INFO.whatsapp}?text=Hello%20J%26M%20Interiors!%20I%20am%20interested%20in%20an%20architectural%20and%20interior%20consultation%20in%20Bengaluru.`}
+          href={`https://wa.me/${BRAND_INFO.whatsapp}?text=Hello%20J%26M%20Interiors!%20I%20would%20like%20to%20inquire%20about%20an%20architectural%20interior%20consultation%20in%20Bengaluru.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] text-white shadow-2xl shadow-[#25D366]/40 hover:scale-105 active:scale-95 transition-all"
-          title="Direct WhatsApp Chat"
+          className="flex items-center gap-2 px-3.5 py-2.5 bg-[#1c1917] text-[#faf8f5] hover:bg-[#322e2b] text-xs font-mono uppercase tracking-wider shadow-lg transition-all"
+          title="Direct WhatsApp"
         >
-          <MessageCircle className="w-5 h-5 fill-white" />
-          <span className="hidden sm:inline text-xs font-semibold tracking-wide">
-            Chat on WhatsApp
-          </span>
+          <MessageCircle className="w-4 h-4 text-[#8c4830]" />
+          <span className="hidden sm:inline">WhatsApp Studio</span>
         </a>
 
         <button
           onClick={scrollToTop}
-          className="p-3 rounded-full bg-[#181615]/80 hover:bg-[#25221f] text-[#c5a880] hover:text-[#d4af37] border border-[#c5a880]/30 shadow-xl backdrop-blur-md transition-all cursor-pointer"
-          title="Scroll to top"
+          className="w-9 h-9 flex items-center justify-center bg-[#ffffff] border border-[#e6e2dc] hover:border-[#1c1917] text-[#1c1917] transition-all shadow-xs cursor-pointer"
+          title="Return to top"
         >
-          <ArrowUp className="w-4 h-4" />
+          <ArrowUp className="w-3.5 h-3.5" />
         </button>
       </div>
     </div>

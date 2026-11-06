@@ -1,92 +1,94 @@
 import { SERVICES } from "@/data/site-data";
-import { ArrowUpRight, Check, Compass, Layers, Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, Check } from "lucide-react";
 
 interface BentoServicesProps {
   onSelectService: (serviceId: string) => void;
   onOpenConsultation: () => void;
 }
 
-export function BentoServices({ onSelectService, onOpenConsultation }: BentoServicesProps) {
+export function BentoServices({ onOpenConsultation }: BentoServicesProps) {
   return (
-    <section id="services" className="py-24 px-5 md:px-8 bg-[#0c0b0a] relative">
+    <section id="services" className="py-24 px-6 lg:px-12 bg-[#ffffff] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1c1a18] border border-[#c5a880]/30 text-xs text-[#c5a880] uppercase tracking-widest mb-4">
-              <Compass className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span>Comprehensive Studio Capabilities</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-[#e6e2dc] gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Badge variant="clay">Capabilities</Badge>
+              <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
+                Architecture & Production
+              </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#f5f0ea] leading-tight">
-              Architectural Vision, <span className="text-[#d4af37] italic">End-to-End Craft.</span>
+            <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
+              Integrated divisions, <span className="text-[#8c4830] italic">one accountability.</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[#a8a29a] leading-relaxed">
-            From modern commercial headquarters on Outer Ring Road to bespoke penthouses in Koramangala and Indiranagar — explore our specialized turnkey divisions.
+          <p className="max-w-md text-sm text-[#57534e] leading-relaxed">
+            By unifying architectural drawings with our own joinery manufacturing and on-site civil crews, we prevent the subcontractor blame-game typical of Indian interior fitouts.
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Editorial Capabilities Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#e6e2dc]">
           {SERVICES.map((srv, index) => {
-            const isLarge = index === 0; // Office Interiors takes prominence
+            const isFeatured = index === 0;
             return (
               <div
                 key={srv.id}
-                className={`group relative rounded-3xl overflow-hidden border border-[#262422] hover:border-[#c5a880]/50 transition-all duration-500 bg-[#141312] flex flex-col justify-between ${
-                  isLarge ? "lg:col-span-2 md:col-span-2" : ""
+                className={`border-r border-b border-[#e6e2dc] p-8 bg-[#ffffff] hover:bg-[#faf8f5] transition-colors flex flex-col justify-between group ${
+                  isFeatured ? "md:col-span-2 lg:col-span-2" : ""
                 }`}
               >
-                {/* Image Banner */}
-                <div className={`relative overflow-hidden ${isLarge ? "h-64 sm:h-80" : "h-56"}`}>
-                  <img
-                    src={srv.image}
-                    alt={srv.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-90 filter contrast-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/40 to-transparent" />
-                  
-                  {/* Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-[#0c0b0a]/80 text-[#d4af37] border border-[#d4af37]/40 backdrop-blur-md">
+                <div>
+                  {/* Top metadata */}
+                  <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#f0ebe3]">
+                    <span className="font-mono text-xs text-[#8c4830] uppercase tracking-wider">
+                      0{index + 1} / DIVISION
+                    </span>
+                    <span className="text-[11px] font-mono uppercase text-[#78716c] bg-[#f5f2ed] px-2 py-0.5 border border-[#e8e2d8]">
                       {srv.badge}
                     </span>
                   </div>
+
+                  {/* Image preview */}
+                  <div className={`overflow-hidden border border-[#e6e2dc] mb-6 ${isFeatured ? "h-64 sm:h-80" : "h-52"}`}>
+                    <img
+                      src={srv.image}
+                      alt={srv.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
+                    />
+                  </div>
+
+                  <h3 className="font-serif text-2xl sm:text-3xl text-[#1c1917] group-hover:text-[#8c4830] transition-colors flex items-center justify-between">
+                    <span>{srv.title}</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#a8a29e] group-hover:text-[#8c4830] transition-colors" />
+                  </h3>
+
+                  <p className="mt-3 text-xs sm:text-sm text-[#57534e] leading-relaxed font-sans">
+                    {srv.description}
+                  </p>
+
+                  {/* Bullet specifications */}
+                  <div className="mt-6 pt-5 border-t border-[#f0ebe3] space-y-2">
+                    {srv.highlights.map((hl, i) => (
+                      <div key={i} className="flex items-start gap-2 text-xs text-[#44403c]">
+                        <Check className="w-3.5 h-3.5 text-[#8c4830] shrink-0 mt-0.5" />
+                        <span>{hl}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-serif text-2xl sm:text-3xl text-[#f5f0ea] group-hover:text-[#d4af37] transition-colors flex items-center justify-between">
-                      <span>{srv.title}</span>
-                      <ArrowUpRight className="w-5 h-5 text-[#c5a880] opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-all" />
-                    </h3>
-                    <p className="mt-3 text-sm text-[#a8a29a] leading-relaxed">
-                      {srv.description}
-                    </p>
-
-                    {/* Highlights bullet list */}
-                    <div className="mt-5 space-y-2 pt-4 border-t border-[#23211f]">
-                      {srv.highlights.map((hl, i) => (
-                        <div key={i} className="flex items-start gap-2.5 text-xs text-[#d8d2ca]">
-                          <Check className="w-3.5 h-3.5 text-[#d4af37] shrink-0 mt-0.5" />
-                          <span>{hl}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Footer action */}
-                  <div className="mt-6 pt-4 flex items-center justify-between">
-                    <button
-                      onClick={onOpenConsultation}
-                      className="text-xs uppercase tracking-wider font-semibold text-[#c5a880] hover:text-[#d4af37] flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Inquire About This Service</span>
-                    </button>
-                    <span className="text-xs text-[#524d47] font-mono">0{index + 1}</span>
-                  </div>
+                <div className="mt-8 pt-4 border-t border-[#f0ebe3] flex items-center justify-between">
+                  <button
+                    onClick={onOpenConsultation}
+                    className="text-xs uppercase tracking-widest font-semibold text-[#1c1917] hover:text-[#8c4830] flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Inquire For Site Brief</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </button>
+                  <span className="font-mono text-[10px] text-[#a8a29e]">BENGALURU</span>
                 </div>
               </div>
             );
