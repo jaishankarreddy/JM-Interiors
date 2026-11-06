@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BRAND_INFO } from "@/data/site-data";
-import { Phone, ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
@@ -20,12 +19,12 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { num: "01", label: "Work", href: "#portfolio" },
-    { num: "02", label: "Capabilities", href: "#services" },
-    { num: "03", label: "Transformation", href: "#transformation" },
-    { num: "04", label: "Cost Estimator", href: "#calculator" },
-    { num: "05", label: "Process", href: "#process" },
-    { num: "06", label: "Studio & FAQ", href: "#faq" },
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "Capabilities", href: "#services" },
+    { label: "Transformation", href: "#transformation" },
+    { label: "Cost Estimator", href: "#calculator" },
+    { label: "Process", href: "#process" },
+    { label: "FAQ", href: "#faq" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -41,97 +40,105 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e6e2dc] py-3.5 shadow-xs"
-          : "bg-[#faf8f5] border-b border-[#e6e2dc]/80 py-5"
+          ? "bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#e6e2dc] py-4 shadow-xs"
+          : "bg-[#faf8f5] border-b border-[#e6e2dc] py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        {/* Brand Mark */}
-        <a href="#" className="flex items-baseline gap-2.5 group">
-          <span className="font-serif text-2xl font-normal tracking-tight text-[#1c1917] group-hover:text-[#8c4830] transition-colors">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between gap-6">
+        {/* Brand Mark - Clean Single Row with Subtle City Tag */}
+        <a href="#" className="flex items-center gap-3 shrink-0 group">
+          <span className="font-serif text-2xl font-normal tracking-tight text-[#1c1917] group-hover:text-[#8c4830] transition-colors whitespace-nowrap">
             J&M Interiors
           </span>
-          <span className="hidden sm:inline-block text-[10px] font-sans uppercase tracking-[0.2em] text-[#78716c]">
-            Architecture & Decorators • Bengaluru
+          <span className="hidden sm:inline-block h-3.5 w-px bg-[#d6d0c7]" />
+          <span className="hidden sm:inline-block text-[11px] font-mono tracking-widest text-[#78716c] uppercase whitespace-nowrap">
+            Bengaluru
           </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-7">
+        {/* Desktop Navigation - Centered, Generously Spaced, No Wrapping */}
+        <nav className="hidden xl:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-xs uppercase tracking-widest text-[#57534e] hover:text-[#1c1917] transition-colors flex items-center gap-1.5 py-1"
+              className="text-[12px] font-sans font-medium uppercase tracking-widest text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#1c1917] hover:after:w-full after:transition-all"
             >
-              <span className="font-mono text-[10px] text-[#a8a29e]">{link.num}</span>
-              <span>{link.label}</span>
+              {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Action Button & Phone */}
-        <div className="hidden sm:flex items-center gap-4">
+        {/* Right Section - Phone & CTA in Clean Single Row with whitespace-nowrap */}
+        <div className="hidden md:flex items-center gap-5 shrink-0">
           <a
             href={`tel:${BRAND_INFO.rawPhone}`}
-            className="text-xs font-mono text-[#57534e] hover:text-[#1c1917] transition-colors flex items-center gap-1.5"
+            className="flex items-center gap-2 text-xs font-mono font-medium text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap px-2 py-1"
+            title="Direct Call to Bengaluru Office"
           >
-            <Phone className="w-3.5 h-3.5 text-[#8c4830]" />
-            <span>{BRAND_INFO.phone}</span>
+            <span className="material-symbols-outlined text-[#8c4830] text-[16px]">call</span>
+            <span className="whitespace-nowrap">{BRAND_INFO.phone}</span>
           </a>
 
           <Button
             onClick={onOpenConsultation}
             size="sm"
-            className="rounded-xs tracking-widest text-[11px]"
+            className="rounded-xs px-4 h-9 tracking-wider text-[11px] font-mono whitespace-nowrap"
           >
             <span>Book Consultation</span>
-            <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+            <span className="material-symbols-outlined text-[14px] ml-1.5">north_east</span>
           </Button>
         </div>
 
-        {/* Mobile menu trigger */}
+        {/* Mobile & Tablet Hamburger Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-1.5 text-[#1c1917] hover:text-[#8c4830] transition-colors"
-          aria-label="Toggle navigation"
+          className="xl:hidden p-2 text-[#1c1917] hover:text-[#8c4830] transition-colors flex items-center justify-center cursor-pointer"
+          aria-label="Toggle Navigation"
         >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <span className="material-symbols-outlined text-[24px]">
+            {mobileOpen ? "close" : "menu"}
+          </span>
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Clean Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#faf8f5] border-b border-[#e6e2dc] px-6 py-6 animate-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col gap-4">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-[#78716c] pb-2 border-b border-[#e6e2dc]">
-              Bengaluru Studio • Turnkey Interiors
+        <div className="xl:hidden bg-[#faf8f5] border-b border-[#e6e2dc] px-6 py-6 shadow-lg animate-in slide-in-from-top-2 duration-200">
+          <div className="flex flex-col gap-3">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-[#78716c] pb-2 border-b border-[#e6e2dc] flex items-center justify-between">
+              <span>Studio Navigation</span>
+              <span>Bengaluru, Karnataka</span>
             </div>
+
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-sm uppercase tracking-wider text-[#1c1917] hover:text-[#8c4830] py-2 flex items-center justify-between border-b border-[#f0ebe3]"
+                className="text-xs uppercase tracking-widest text-[#1c1917] hover:text-[#8c4830] py-2.5 border-b border-[#f0ebe3] flex items-center justify-between"
               >
                 <span>{link.label}</span>
-                <span className="font-mono text-xs text-[#a8a29e]">{link.num}</span>
+                <span className="material-symbols-outlined text-[16px] text-[#a8a29e]">arrow_forward</span>
               </a>
             ))}
-            <div className="pt-2 flex flex-col gap-3">
+
+            <div className="pt-3 flex flex-col gap-2.5">
               <a
                 href={`tel:${BRAND_INFO.rawPhone}`}
-                className="py-3 text-center border border-[#d6d0c7] text-xs font-mono font-medium text-[#1c1917]"
+                className="w-full py-2.5 px-4 text-center border border-[#d6d0c7] text-xs font-mono font-medium text-[#1c1917] flex items-center justify-center gap-2"
               >
-                Direct Call: {BRAND_INFO.phone}
+                <span className="material-symbols-outlined text-[16px] text-[#8c4830]">call</span>
+                <span>{BRAND_INFO.phone}</span>
               </a>
+
               <Button
                 onClick={() => {
                   setMobileOpen(false);
                   onOpenConsultation();
                 }}
-                className="w-full"
+                className="w-full h-10 tracking-widest text-xs font-mono"
               >
                 Book Site Consultation
               </Button>

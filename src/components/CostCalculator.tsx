@@ -3,10 +3,8 @@ import confetti from "canvas-confetti";
 import { formatINR } from "@/lib/utils";
 import { BRAND_INFO } from "@/data/site-data";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import { Check, MessageSquare, ArrowRight, Clock, ShieldCheck, FileText } from "lucide-react";
 
 type PropertyType = "2bhk" | "3bhk" | "villa" | "office";
 type FinishTier = "signature" | "avant-garde" | "bespoke";
@@ -19,10 +17,10 @@ export function CostCalculator() {
   const [approxSqFt, setApproxSqFt] = useState<number>(1650);
 
   const configs: Record<PropertyType, { min: number; max: number; def: number; label: string; desc: string }> = {
-    "2bhk": { min: 800, max: 1300, def: 1050, label: "2 BHK Apartment", desc: "Compact luxury residential" },
-    "3bhk": { min: 1250, max: 2200, def: 1650, label: "3 BHK Residence", desc: "Spacious family living" },
-    villa: { min: 2200, max: 5500, def: 3200, label: "4 BHK / Villa", desc: "Independent multi-level home" },
-    office: { min: 1200, max: 10000, def: 3500, label: "Commercial Office", desc: "Workplace & headquarters" },
+    "2bhk": { min: 800, max: 1300, def: 1050, label: "2 BHK Apartment", desc: "Compact residential" },
+    "3bhk": { min: 1250, max: 2200, def: 1650, label: "3 BHK Residence", desc: "Family living" },
+    villa: { min: 2200, max: 5500, def: 3200, label: "4 BHK / Villa", desc: "Independent home" },
+    office: { min: 1200, max: 10000, def: 3500, label: "Commercial Office", desc: "Workplace hub" },
   };
 
   const finishTiers: Record<FinishTier, { mult: number; title: string; subtitle: string; hardware: string }> = {
@@ -77,13 +75,13 @@ export function CostCalculator() {
   );
 
   return (
-    <section id="calculator" className="py-24 px-6 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
+    <section id="calculator" className="py-24 px-6 sm:px-8 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-[#e6e2dc] gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Badge variant="clay">Estimator Index</Badge>
+              <Badge variant="clay" className="font-mono text-[10px] tracking-wider">Estimator Index</Badge>
               <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
                 Preliminary Cost Modeling
               </span>
@@ -100,7 +98,7 @@ export function CostCalculator() {
         {/* Estimation Slip Grid */}
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Controls Column */}
-          <div className="lg:col-span-7 space-y-8 bg-[#ffffff] p-8 border border-[#e6e2dc]">
+          <div className="lg:col-span-7 space-y-8 bg-[#ffffff] p-6 sm:p-8 border border-[#e6e2dc]">
             {/* Step 1: Configuration */}
             <div>
               <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3">
@@ -118,12 +116,12 @@ export function CostCalculator() {
                       }}
                       className={`p-3.5 text-left border transition-all cursor-pointer ${
                         isSelected
-                          ? "border-[#1c1917] bg-[#faf8f5] text-[#1c1917]"
-                          : "border-[#e6e2dc] bg-[#ffffff] text-[#78716c] hover:border-[#a8a29e]"
+                          ? "border-[#1c1917] bg-[#faf8f5] text-[#1c1917] shadow-xs"
+                          : "border-[#e6e2dc] bg-[#ffffff] text-[#78716c] hover:border-[#1c1917] hover:text-[#1c1917]"
                       }`}
                     >
-                      <div className="font-serif text-lg leading-none mb-1">{configs[key].label}</div>
-                      <div className="text-[10px] font-mono text-[#a8a29e]">{configs[key].desc}</div>
+                      <div className="font-serif text-lg leading-tight mb-1">{configs[key].label}</div>
+                      <div className="text-[10px] font-mono text-[#78716c]">{configs[key].desc}</div>
                     </button>
                   );
                 })}
@@ -148,7 +146,7 @@ export function CostCalculator() {
                 onValueChange={(val) => setApproxSqFt(val[0])}
                 className="py-2"
               />
-              <div className="flex justify-between text-[11px] font-mono text-[#a8a29e] mt-1">
+              <div className="flex justify-between text-[11px] font-mono text-[#78716c] mt-1">
                 <span>Min: {configs[property].min} sq.ft</span>
                 <span>Max: {configs[property].max} sq.ft</span>
               </div>
@@ -173,14 +171,14 @@ export function CostCalculator() {
                       className={`p-3.5 text-left border transition-all cursor-pointer ${
                         isSelected
                           ? "border-[#1c1917] bg-[#faf8f5]"
-                          : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#a8a29e]"
+                          : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#1c1917]"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center justify-between mb-1.5">
                         <span className="text-xs font-semibold text-[#1c1917]">{s.label}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-[#8c4830]" />}
+                        {isSelected && <span className="material-symbols-outlined text-[16px] text-[#8c4830]">check</span>}
                       </div>
-                      <p className="text-[11px] text-[#78716c] leading-tight">{s.copy}</p>
+                      <p className="text-[11px] text-[#78716c] leading-tight font-sans">{s.copy}</p>
                     </button>
                   );
                 })}
@@ -203,7 +201,7 @@ export function CostCalculator() {
                       className={`w-full p-4 text-left border transition-all cursor-pointer flex items-start justify-between ${
                         isSelected
                           ? "border-[#1c1917] bg-[#faf8f5]"
-                          : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#a8a29e]"
+                          : "border-[#e6e2dc] bg-[#ffffff] hover:border-[#1c1917]"
                       }`}
                     >
                       <div>
@@ -212,10 +210,10 @@ export function CostCalculator() {
                             {item.title}
                           </span>
                           {tierKey === "avant-garde" && (
-                            <Badge variant="clay" className="text-[9px]">Standard Specification</Badge>
+                            <Badge variant="clay" className="text-[9px] font-mono">Standard Specification</Badge>
                           )}
                         </div>
-                        <p className="text-xs text-[#57534e] mt-1">{item.subtitle}</p>
+                        <p className="text-xs text-[#57534e] mt-1 font-sans">{item.subtitle}</p>
                         <p className="text-[11px] font-mono text-[#8c4830] mt-0.5">Hardware: {item.hardware}</p>
                       </div>
                       <div
@@ -267,17 +265,17 @@ export function CostCalculator() {
               {/* Guarantees */}
               <div className="grid grid-cols-2 gap-3 py-4 border-y border-[#e6e2dc]">
                 <div className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 text-[#8c4830] mt-0.5" />
+                  <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">schedule</span>
                   <div>
                     <div className="text-xs font-semibold text-[#1c1917]">45 Working Days</div>
-                    <div className="text-[10px] text-[#78716c]">Guaranteed Handover</div>
+                    <div className="text-[10px] font-mono text-[#78716c]">Guaranteed Handover</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#8c4830] mt-0.5" />
+                  <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">verified_user</span>
                   <div>
                     <div className="text-xs font-semibold text-[#1c1917]">10-Year Warranty</div>
-                    <div className="text-[10px] text-[#78716c]">Hardware & Carcass</div>
+                    <div className="text-[10px] font-mono text-[#78716c]">Hardware & Carcass</div>
                   </div>
                 </div>
               </div>
@@ -295,8 +293,8 @@ export function CostCalculator() {
                   "Post-handover white-glove cleaning & formal 10-year warranty document",
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#8c4830] shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                    <span className="material-symbols-outlined text-[16px] text-[#8c4830] shrink-0 mt-0.5">check</span>
+                    <span className="font-sans">{item}</span>
                   </div>
                 ))}
               </div>
@@ -308,14 +306,14 @@ export function CostCalculator() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleCelebrate}
-                  className="w-full h-11 inline-flex items-center justify-center gap-2 bg-[#1c1917] hover:bg-[#322e2b] text-[#faf8f5] text-xs font-semibold uppercase tracking-widest transition-colors cursor-pointer"
+                  className="w-full h-11 inline-flex items-center justify-center gap-2 bg-[#1c1917] hover:bg-[#322e2b] text-[#faf8f5] text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
                 >
-                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span className="material-symbols-outlined text-[18px]">chat</span>
                   <span>Send Estimate to J&M WhatsApp</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                 </a>
 
-                <p className="text-center text-[10px] font-mono text-[#a8a29e]">
+                <p className="text-center text-[10px] font-mono text-[#78716c]">
                   Direct consultation with J&M Interiors Bangalore (+91 9035 672 941)
                 </p>
               </div>
