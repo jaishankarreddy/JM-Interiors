@@ -1,25 +1,22 @@
-# J&M Interiors & Decorators — Modern Architectural Showcase
+# Modern Interior & Architectural Studio Showcase
 
-> **Awwwards-Caliber Digital Revamp & High-Converting Client Pitch Demo**  
-> **Brand:** J M Interior And Decorators (operating as *JM Interiors*, Bengaluru)  
-> **Original Website:** [https://jandminteriors.in/](https://jandminteriors.in/)  
-> **Headquarters:** #2, AECS Layout B Block, Chikka Begur, Bengaluru – 560068, Karnataka, India  
-> **Contact:** +91 9035 672 941 | jandminteriors2000@gmail.com  
-> **GitHub Repository:** [https://github.com/Varun-Esarapu/JM-Interiors.git](https://github.com/Varun-Esarapu/JM-Interiors.git)
+> **Awwwards-Caliber Digital Showcase & Portfolio Platform**  
+> Built with React 19, TypeScript, Tailwind CSS, GSAP, Lenis, and shadcn/ui.  
+> **Repository:** [https://github.com/Varun-Esarapu/JM-Interiors.git](https://github.com/Varun-Esarapu/JM-Interiors.git)
 
 ---
 
 ## 🏛️ Executive Summary & Concept
 
-This project is a high-performance, responsive redesign of the official WordPress website for **J M Interior And Decorators**, a premier commercial and residential interior architecture studio based in Bengaluru.
+This project is a high-performance, responsive portfolio and digital showcase engineered for a modern interior architecture and turnkey design studio.
 
-The original site lacked modern mobile responsiveness, suffered from broken plugin counters, and lacked interactive client engagement tools. This bespoke revamp transforms the brand presence into an **Awwwards-tier editorial architectural portfolio** featuring:
+Designed from the ground up as an **Awwwards-tier editorial architectural portfolio**, the application features:
 - **Light Theme Only**: Natural stone paper, gallery white surfaces, deep charcoal typography, and warm terracotta accents.
 - **Fluid Momentum Scrolling**: Powered by Lenis and synchronized with the GSAP animation ticker.
 - **GSAP 60fps Motion Design**: Contextual magnetic cursor, smooth ScrollTrigger reveals, and micro-interactions.
 - **Interactive Before / After Transformation Slider**: 1:1 camera-aligned comparison showing raw concrete structures turning into turnkey finished spaces.
-- **Interactive Bengaluru Cost Estimator**: Instant, real-time budget calculator with 1-click WhatsApp quote forwarding.
-- **Authentic Client Data**: 100% faithful replication of the real service offerings, workflow stages, customer reviews, and contact channels from `jandminteriors.in`.
+- **Interactive Turnkey Cost Estimator**: Instant, real-time budget calculator with pre-configured parameters and 1-click WhatsApp quote forwarding.
+- **Editorial Architectural Layout**: Clean typographic hierarchy, generous spatial breathing room, and responsive bento grids.
 
 ---
 
@@ -106,12 +103,12 @@ The typography combines a clean geometric sans with an architectural monospace f
 - Dual touch and mouse drag support with normalized percentage calculations.
 
 ### 4. Interactive Turnkey Cost Estimator (`CostCalculator.tsx`)
-- Real Bengaluru market pricing engine based on carpet area (sq.ft.), property configuration (2 BHK, 3 BHK, 4 BHK Villa, Commercial Office), scope of execution, and finish specification tier (*Signature, Avant-Garde, Bespoke Haute Joinery*).
-- Generates an itemized project estimate slip with 45-day guaranteed handover SLA and 10-year warranty badges.
-- Includes pre-filled WhatsApp quote forwarding directly to client phone: `+91 9035 672 941`.
+- Formula-driven pricing engine based on carpet area (sq.ft.), property configuration (2 BHK, 3 BHK, 4 BHK Villa, Commercial Office), scope of execution, and finish specification tier (*Signature, Avant-Garde, Bespoke Haute Joinery*).
+- Generates an itemized project estimate slip with guaranteed handover SLA and warranty badges.
+- Includes pre-filled WhatsApp quote forwarding and direct consultation actions.
 
 ### 5. Architectural Process Timeline (`ProcessTimeline.tsx`)
-- Replicates the client's verified 4-step workflow:
+- 4-step architectural execution workflow:
   1. **Visit Project** — Site evaluation & spatial measurement
   2. **Planning Design** — Conceptual layouts & 3D space planning
   3. **Project Sketch** — Material selections & engineering blueprints
@@ -125,7 +122,7 @@ The typography combines a clean geometric sans with an architectural monospace f
 Interior Design/
 ├── public/
 │   ├── assets/                 # High-resolution architectural photography
-│   └── favicon.svg             # Minimalist JM brand mark
+│   └── favicon.svg             # Minimalist architectural brand mark
 ├── src/
 │   ├── assets/                 # Project images, hero visuals, textures
 │   ├── components/
@@ -139,19 +136,19 @@ Interior Design/
 │   │   │   └── tabs.tsx
 │   │   ├── AboutSection.tsx        # Studio pillars, experience metrics
 │   │   ├── BeforeAfterSlider.tsx   # 1:1 pixel-perfect transformation slider
-│   │   ├── BentoServices.tsx       # 4 core client service cards
+│   │   ├── BentoServices.tsx       # 4 core service cards
 │   │   ├── ConsultationModal.tsx   # Lead capture booking dialog
-│   │   ├── CostCalculator.tsx      # Turnkey Bengaluru price estimator
+│   │   ├── CostCalculator.tsx      # Turnkey price estimator
 │   │   ├── CustomCursor.tsx        # GSAP quickTo magnetic pointer
-│   │   ├── FAQSection.tsx          # Real client questions & answers
-│   │   ├── Footer.tsx              # Studio contact, maps link, full sitemap
+│   │   ├── FAQSection.tsx          # Architectural FAQs and inquiry accordion
+│   │   ├── Footer.tsx              # Studio navigation, links, and sitemap
 │   │   ├── Hero.tsx                # Clean, un-congested editorial hero
 │   │   ├── Navbar.tsx              # Uniform Plus Jakarta Sans navigation
-│   │   ├── ProcessTimeline.tsx     # 4-stage client workflow
-│   │   ├── ProjectShowcase.tsx     # Filterable commercial & home gallery
+│   │   ├── ProcessTimeline.tsx     # 4-stage execution workflow
+│   │   ├── ProjectShowcase.tsx     # Filterable commercial & residential gallery
 │   │   └── TestimonialMarquee.tsx  # Client reviews & partner ticker
 │   ├── data/
-│   │   └── site-data.ts        # Single source of truth for client data
+│   │   └── site-data.ts        # Single source of truth for site content & config
 │   ├── lib/
 │   │   └── utils.ts            # clsx and tailwind-merge helper
 │   ├── App.tsx                 # Root layout, Lenis init, and state handlers
@@ -198,14 +195,3 @@ npm run build
 # Preview the production build locally
 npm run preview
 ```
-
----
-
-## 📞 Client Information & Credits
-
-- **Client:** J M Interior And Decorators (*JM Interiors*)
-- **Website:** [https://jandminteriors.in/](https://jandminteriors.in/)
-- **Phone:** +91 9035 672 941
-- **Email:** jandminteriors2000@gmail.com
-- **Studio Address:** #2, AECS Layout B Block, Chikka Begur, Bengaluru – 560068, Karnataka, India
-- **Repository:** [https://github.com/Varun-Esarapu/JM-Interiors.git](https://github.com/Varun-Esarapu/JM-Interiors.git)
