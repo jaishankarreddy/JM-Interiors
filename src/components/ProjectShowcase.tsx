@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PROJECTS, Project } from "@/data/site-data";
+import { CLIENT_DATA } from "@/data/site-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ArrowUpRight, MapPin, Check } from "lucide-react";
 
 interface ProjectShowcaseProps {
   onOpenConsultation: () => void;
@@ -17,35 +16,31 @@ interface ProjectShowcaseProps {
 
 export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ id: string; title: string; category: string; image: string } | null>(null);
 
-  const categories = [
-    { id: "All", label: "All Works" },
-    { id: "Residential", label: "Residential" },
-    { id: "Commercial", label: "Commercial" },
-    { id: "Modular Kitchen", label: "Modular Kitchens" },
-    { id: "Custom Furniture", label: "Bespoke Joinery" },
-  ];
+  const categories = ["All", "Office Interiors", "Home Interiors", "Office Furniture", "Home Furniture"];
 
-  const filteredProjects =
+  const filteredGallery =
     activeCategory === "All"
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === activeCategory);
+      ? CLIENT_DATA.gallery
+      : CLIENT_DATA.gallery.filter((g) => g.category === activeCategory);
 
   return (
-    <section id="portfolio" className="py-24 px-6 lg:px-12 bg-[#ffffff] border-b border-[#e6e2dc]">
+    <section id="gallery" className="py-24 px-6 sm:px-8 lg:px-12 bg-[#ffffff] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-[#e6e2dc] gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Badge variant="clay">Archive</Badge>
+              <Badge variant="clay" className="font-mono text-[10px] tracking-wider">
+                Our Gallery
+              </Badge>
               <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
-                Index 2021 — 2026
+                Featured Works
               </span>
             </div>
             <h2 className="font-serif text-4xl sm:text-6xl text-[#1c1917] leading-tight">
-              Selected architectural <span className="text-[#8c4830] italic">commissions.</span>
+              Crafted by Bangalore's <span className="text-[#8c4830] italic">Top Architecture Firms.</span>
             </h2>
           </div>
 
@@ -53,39 +48,39 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
                 className={`px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
-                  activeCategory === cat.id
+                  activeCategory === cat
                     ? "border-[#1c1917] bg-[#1c1917] text-[#faf8f5]"
                     : "border-[#e6e2dc] bg-[#faf8f5] text-[#78716c] hover:border-[#1c1917] hover:text-[#1c1917]"
                 }`}
               >
-                {cat.label}
+                {cat}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Projects Grid */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, idx) => (
+          {filteredGallery.map((item, idx) => (
             <div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
+              key={item.id}
+              onClick={() => setSelectedItem(item)}
               className="group cursor-pointer bg-[#ffffff] border border-[#e6e2dc] hover:border-[#1c1917] transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#f0ebe3] border-b border-[#e6e2dc]">
                   <img
-                    src={project.image}
-                    alt={project.title}
+                    src={item.image}
+                    alt={item.title}
                     className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="bg-[#faf8f5]/90 border border-[#e6e2dc] px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-[#1c1917]">
-                      {project.category}
+                      {item.category}
                     </span>
                   </div>
                   <div className="absolute top-3 right-3 font-mono text-[10px] text-[#78716c] bg-[#faf8f5]/80 px-2 py-0.5 border border-[#e6e2dc]">
@@ -95,31 +90,23 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
 
                 {/* Details */}
                 <div className="p-6">
-                  <div className="flex items-center gap-1.5 text-xs text-[#78716c] font-mono mb-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#8c4830]" />
-                    <span>{project.location}</span>
-                    <span>/</span>
-                    <span>{project.area}</span>
-                  </div>
-
+                  <span className="font-mono text-xs text-[#8c4830] block mb-1">
+                    Bangalore, Karnataka
+                  </span>
                   <h3 className="font-serif text-2xl text-[#1c1917] group-hover:text-[#8c4830] transition-colors">
-                    {project.title}
+                    {item.title}
                   </h3>
-
-                  <p className="mt-2 text-xs text-[#57534e] line-clamp-2 leading-relaxed">
-                    {project.description}
-                  </p>
                 </div>
               </div>
 
-              {/* Bottom metadata */}
+              {/* Bottom bar */}
               <div className="px-6 py-4 border-t border-[#f0ebe3] flex items-center justify-between text-xs">
                 <span className="font-mono text-[11px] text-[#78716c]">
-                  Completed: {project.year}
+                  JM Interiors Archive
                 </span>
                 <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[#1c1917] group-hover:text-[#8c4830] flex items-center gap-1">
-                  <span>Blueprint</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>View Details</span>
+                  <span className="material-symbols-outlined text-[14px]">north_east</span>
                 </span>
               </div>
             </div>
@@ -127,70 +114,44 @@ export function ProjectShowcase({ onOpenConsultation }: ProjectShowcaseProps) {
         </div>
       </div>
 
-      {/* Blueprint Detail Dialog */}
-      <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        {selectedProject && (
-          <DialogContent className="max-w-3xl">
+      {/* Detail Dialog */}
+      <Dialog open={!!selectedItem} onOpenChange={(open) => !open && setSelectedItem(null)}>
+        {selectedItem && (
+          <DialogContent className="max-w-2xl bg-[#faf8f5] border border-[#e6e2dc] rounded-none p-6">
             <DialogHeader>
-              <div className="flex items-center gap-2 text-xs font-mono text-[#78716c] mb-1">
-                <span>{selectedProject.category.toUpperCase()}</span>
-                <span>•</span>
-                <span>{selectedProject.location}</span>
-                <span>•</span>
-                <span>{selectedProject.area}</span>
-              </div>
-              <DialogTitle className="text-3xl font-serif">
-                {selectedProject.title}
+              <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830]">
+                {selectedItem.category}
+              </span>
+              <DialogTitle className="text-3xl font-serif text-[#1c1917]">
+                {selectedItem.title}
               </DialogTitle>
-              <DialogDescription className="text-sm text-[#57534e] pt-2">
-                {selectedProject.description}
+              <DialogDescription className="text-xs text-[#78716c]">
+                Crafted by JM Interiors in Bangalore with bespoke joinery and turnkey precision.
               </DialogDescription>
             </DialogHeader>
 
-            <div className="relative aspect-[16/9] overflow-hidden border border-[#e6e2dc] my-3">
+            <div className="relative aspect-[16/10] overflow-hidden border border-[#e6e2dc] my-3">
               <img
-                src={selectedProject.image}
-                alt={selectedProject.title}
+                src={selectedItem.image}
+                alt={selectedItem.title}
                 className="w-full h-full object-cover object-center"
               />
             </div>
 
-            {/* Specifications */}
-            <div className="p-4 bg-[#f2efe9] border border-[#e6e2dc] space-y-2">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#1c1917] font-semibold block mb-2">
-                Architectural Specifications:
-              </span>
-              <div className="grid sm:grid-cols-2 gap-2 text-xs text-[#44403c]">
-                {selectedProject.features.map((feat, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#8c4830] shrink-0 mt-0.5" />
-                    <span>{feat}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="flex items-center justify-between pt-3 border-t border-[#e6e2dc]">
-              <div className="flex flex-wrap gap-1.5">
-                {selectedProject.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[10px] font-mono uppercase bg-[#ffffff] border border-[#e6e2dc] px-2 py-0.5 text-[#78716c]"
-                  >
-                    #{t}
-                  </span>
-                ))}
-              </div>
+              <span className="font-mono text-xs text-[#78716c]">
+                Location: Bengaluru, Karnataka
+              </span>
 
               <Button
                 onClick={() => {
-                  setSelectedProject(null);
+                  setSelectedItem(null);
                   onOpenConsultation();
                 }}
                 size="sm"
-                className="rounded-xs"
+                className="rounded-xs font-mono text-xs"
               >
-                Inquire For Similar Layout
+                Inquire For Similar Space
               </Button>
             </div>
           </DialogContent>

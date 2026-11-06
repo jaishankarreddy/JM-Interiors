@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useLenis } from "@/hooks/use-lenis";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { AboutSection } from "@/components/AboutSection";
 import { BentoServices } from "@/components/BentoServices";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { CostCalculator } from "@/components/CostCalculator";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialMarquee } from "@/components/TestimonialMarquee";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 import { ConsultationModal } from "@/components/ConsultationModal";
-import { BRAND_INFO } from "@/data/site-data";
+import { CLIENT_DATA } from "@/data/site-data";
 
 export function App() {
   // Lenis smooth momentum scrolling
@@ -32,43 +33,46 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-[#1c1917] selection:bg-[#1c1917] selection:text-[#faf8f5] font-sans antialiased">
-      {/* Clean Architectural Navigation Bar */}
+      {/* Clean Navbar */}
       <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
       <main>
-        {/* Architectural Hero */}
+        {/* 1. Hero Banner */}
         <Hero
           onOpenConsultation={() => setConsultationOpen(true)}
-          onExploreProjects={() => scrollToSection("portfolio")}
+          onExploreServices={() => scrollToSection("services")}
           onOpenCalculator={() => scrollToSection("calculator")}
         />
 
-        {/* Selected Project Showcase */}
-        <ProjectShowcase onOpenConsultation={() => setConsultationOpen(true)} />
+        {/* 2. About JM Interiors — Your Professional Architecture Partner */}
+        <AboutSection onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Integrated Capabilities Grid */}
+        {/* 3. Our Services — See Our Architecture Services at a Glance */}
         <BentoServices
           onSelectService={() => setConsultationOpen(true)}
           onOpenConsultation={() => setConsultationOpen(true)}
         />
 
-        {/* Interactive Before & After Transformation */}
-        <BeforeAfterSlider />
-
-        {/* Interactive Architectural Cost Estimator */}
-        <CostCalculator />
-
-        {/* 4-Stage Chronological Execution Protocol */}
+        {/* 4. How We Work — Our Easy Working Steps */}
         <ProcessTimeline onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Hardware Specifications Ticker & Client Accounts */}
+        {/* 5. Interactive Before & After Transformation */}
+        <BeforeAfterSlider />
+
+        {/* 6. Interactive Preliminary Cost Estimator */}
+        <CostCalculator />
+
+        {/* 7. Our Gallery — Crafted by Bangalore's Top Architecture Firms */}
+        <ProjectShowcase onOpenConsultation={() => setConsultationOpen(true)} />
+
+        {/* 8. Testimonials — What Our Client's Say */}
         <TestimonialMarquee />
 
-        {/* Architectural FAQ */}
+        {/* 9. FAQs — Most Commonly Asked Questions About Us */}
         <FAQSection />
       </main>
 
-      {/* Footer */}
+      {/* Footer & Contact */}
       <Footer onOpenConsultation={() => setConsultationOpen(true)} />
 
       {/* Consultation Dialog */}
@@ -80,7 +84,7 @@ export function App() {
       {/* Minimalist Floating Action Controls */}
       <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
         <a
-          href={`https://wa.me/${BRAND_INFO.whatsapp}?text=Hello%20J%26M%20Interiors!%20I%20would%20like%20to%20inquire%20about%20an%20architectural%20interior%20consultation%20in%20Bengaluru.`}
+          href={`https://wa.me/${CLIENT_DATA.contact.whatsapp}?text=Hello%20JM%20Interiors!%20I%20would%20like%20to%20inquire%20about%20an%20architectural%20interior%20consultation%20in%20Bengaluru.`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3.5 py-2 bg-[#1c1917] text-[#faf8f5] hover:bg-[#322e2b] text-[11px] font-mono uppercase tracking-wider shadow-md transition-all border border-[#1c1917]"
