@@ -75,34 +75,35 @@ export function CostCalculator() {
   );
 
   return (
-    <section id="calculator" className="py-24 px-6 sm:px-8 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
+    <section id="calculator" className="py-20 px-6 sm:px-8 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-[#e6e2dc] gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 mb-10 border-b border-[#e6e2dc] gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Badge variant="clay" className="font-mono text-[10px] tracking-wider">Estimator Index</Badge>
-              <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="clay" className="text-[10px] uppercase tracking-wider font-semibold">
+                Estimator
+              </Badge>
+              <span className="text-xs uppercase tracking-wider text-[#78716c] font-medium">
                 Preliminary Cost Modeling
               </span>
             </div>
-            <h2 className="font-display text-4xl sm:text-6xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
-              HONEST ESTIMATES, <br />
-              <span className="text-[#8c4830]">LINE-BY-LINE.</span>
+            <h2 className="font-sans text-3xl sm:text-5xl uppercase font-bold text-[#1c1917] tracking-tight leading-tight">
+              Cost Estimator <span className="text-[#8c4830]">& Schedule.</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[#57534e] leading-relaxed font-sans">
-            Configure your parameters below to generate an itemized investment range based on real prevailing Bangalore material and labour rates.
+          <p className="max-w-md text-xs sm:text-sm text-[#57534e] leading-relaxed font-sans">
+            Configure your parameters below to generate an itemized investment range based on prevailing Bangalore rates.
           </p>
         </div>
 
         {/* Estimation Slip Grid */}
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Controls Column */}
-          <div className="lg:col-span-7 space-y-8 bg-[#ffffff] p-6 sm:p-8 border border-[#e6e2dc]">
+          <div className="lg:col-span-7 space-y-7 bg-[#ffffff] p-6 sm:p-8 border border-[#e6e2dc]">
             {/* Step 1: Configuration */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
+              <label className="text-xs uppercase tracking-wider text-[#78716c] block mb-3 font-semibold">
                 01. Select Property Configuration
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -122,8 +123,8 @@ export function CostCalculator() {
                       }`}
                       data-cursor="SELECT"
                     >
-                      <div className="font-display text-base uppercase font-bold leading-tight mb-1">{configs[key].label}</div>
-                      <div className="text-[10px] font-mono text-[#78716c]">{configs[key].desc}</div>
+                      <div className="text-sm font-sans font-bold leading-tight mb-0.5">{configs[key].label}</div>
+                      <div className="text-[10px] text-[#78716c] font-sans">{configs[key].desc}</div>
                     </button>
                   );
                 })}
@@ -133,11 +134,11 @@ export function CostCalculator() {
             {/* Step 2: Slider */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] font-semibold">
+                <label className="text-xs uppercase tracking-wider text-[#78716c] font-semibold">
                   02. Carpet Area (Square Feet)
                 </label>
-                <span className="font-display text-2xl font-bold text-[#1c1917]">
-                  {approxSqFt.toLocaleString()} <span className="text-xs font-mono text-[#78716c]">sq.ft</span>
+                <span className="text-xl font-bold font-sans text-[#1c1917]">
+                  {approxSqFt.toLocaleString()} <span className="text-xs font-normal text-[#78716c]">sq.ft</span>
                 </span>
               </div>
               <Slider
@@ -148,7 +149,7 @@ export function CostCalculator() {
                 onValueChange={(val) => setApproxSqFt(val[0])}
                 className="py-2"
               />
-              <div className="flex justify-between text-[11px] font-mono text-[#78716c] mt-1">
+              <div className="flex justify-between text-[11px] text-[#78716c] mt-1 font-sans">
                 <span>Min: {configs[property].min} sq.ft</span>
                 <span>Max: {configs[property].max} sq.ft</span>
               </div>
@@ -156,7 +157,7 @@ export function CostCalculator() {
 
             {/* Step 3: Scope */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
+              <label className="text-xs uppercase tracking-wider text-[#78716c] block mb-3 font-semibold">
                 03. Scope of Execution
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -177,8 +178,8 @@ export function CostCalculator() {
                       }`}
                       data-cursor="TOGGLE"
                     >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-bold uppercase font-sans text-[#1c1917]">{s.label}</span>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-bold font-sans text-[#1c1917]">{s.label}</span>
                         {isSelected && <span className="material-symbols-outlined text-[16px] text-[#8c4830]">check</span>}
                       </div>
                       <p className="text-[11px] text-[#78716c] leading-tight font-sans">{s.copy}</p>
@@ -190,7 +191,7 @@ export function CostCalculator() {
 
             {/* Step 4: Finish Specification */}
             <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#78716c] block mb-3 font-semibold">
+              <label className="text-xs uppercase tracking-wider text-[#78716c] block mb-3 font-semibold">
                 04. Material Specification Tier
               </label>
               <div className="space-y-2.5">
@@ -214,11 +215,11 @@ export function CostCalculator() {
                             {item.title}
                           </span>
                           {tierKey === "avant-garde" && (
-                            <Badge variant="clay" className="text-[9px] font-mono">Standard Specification</Badge>
+                            <Badge variant="clay" className="text-[9px] font-semibold">Standard Specification</Badge>
                           )}
                         </div>
-                        <p className="text-xs text-[#57534e] mt-1 font-sans">{item.subtitle}</p>
-                        <p className="text-[11px] font-mono text-[#8c4830] mt-0.5">Hardware: {item.hardware}</p>
+                        <p className="text-xs text-[#57534e] mt-0.5 font-sans">{item.subtitle}</p>
+                        <p className="text-[11px] text-[#8c4830] mt-0.5 font-medium">Hardware: {item.hardware}</p>
                       </div>
                       <div
                         className={`w-4 h-4 rounded-full border mt-1 flex items-center justify-center shrink-0 ${
@@ -236,57 +237,57 @@ export function CostCalculator() {
 
           {/* Quotation Slip Preview (Right Column) */}
           <Card className="lg:col-span-5 bg-[#faf8f5] border border-[#e6e2dc] rounded-none">
-            <CardHeader className="border-b border-[#e6e2dc] pb-5">
+            <CardHeader className="border-b border-[#e6e2dc] pb-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
+                <span className="text-xs uppercase tracking-wider text-[#78716c] font-semibold">
                   Preliminary Estimate Slip
                 </span>
-                <span className="font-mono text-[11px] text-[#8c4830] font-bold">
+                <span className="text-[11px] text-[#8c4830] font-bold">
                   DOC-JM-{new Date().getFullYear()}
                 </span>
               </div>
-              <CardTitle className="text-xl font-display uppercase tracking-tight mt-2">
+              <CardTitle className="text-lg font-sans font-bold uppercase tracking-tight mt-1.5">
                 Turnkey Investment Schedule
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="pt-6 space-y-6">
+            <CardContent className="pt-5 space-y-5">
               {/* Grand Price Range */}
               <div>
-                <span className="text-xs font-mono uppercase text-[#78716c] block mb-1">
+                <span className="text-xs uppercase text-[#78716c] block mb-1 font-semibold">
                   Estimated Investment Range:
                 </span>
-                <div className="font-display text-3xl sm:text-4xl text-[#1c1917] leading-none uppercase">
+                <div className="text-2xl sm:text-3xl font-bold font-sans text-[#1c1917] leading-none">
                   <span>{formatINR(minCost)}</span>
-                  <span className="text-lg text-[#78716c] mx-2 font-mono font-light">to</span>
+                  <span className="text-base text-[#78716c] mx-2 font-normal">to</span>
                   <span>{formatINR(maxCost)}</span>
                 </div>
-                <p className="text-[11px] font-mono text-[#78716c] mt-2">
+                <p className="text-[11px] text-[#78716c] mt-1.5 font-sans">
                   *Effective rate: ~₹{ratePerSqFt} per sq.ft based on chosen specifications.
                 </p>
               </div>
 
               {/* Guarantees */}
-              <div className="grid grid-cols-2 gap-3 py-4 border-y border-[#e6e2dc]">
+              <div className="grid grid-cols-2 gap-3 py-3.5 border-y border-[#e6e2dc]">
                 <div className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">schedule</span>
+                  <span className="material-symbols-outlined text-[18px] text-[#8c4830] mt-0.5">schedule</span>
                   <div>
-                    <div className="text-xs font-bold text-[#1c1917] uppercase font-sans">45 Working Days</div>
-                    <div className="text-[10px] font-mono text-[#78716c]">Guaranteed Handover</div>
+                    <div className="text-xs font-bold text-[#1c1917] font-sans">45 Working Days</div>
+                    <div className="text-[10px] text-[#78716c] font-sans">Guaranteed Handover</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-[20px] text-[#8c4830] mt-0.5">verified_user</span>
+                  <span className="material-symbols-outlined text-[18px] text-[#8c4830] mt-0.5">verified_user</span>
                   <div>
-                    <div className="text-xs font-bold text-[#1c1917] uppercase font-sans">10-Year Warranty</div>
-                    <div className="text-[10px] font-mono text-[#78716c]">Hardware & Carcass</div>
+                    <div className="text-xs font-bold text-[#1c1917] font-sans">10-Year Warranty</div>
+                    <div className="text-[10px] text-[#78716c] font-sans">Hardware & Carcass</div>
                   </div>
                 </div>
               </div>
 
               {/* Inclusions */}
               <div className="space-y-2 text-xs text-[#57534e]">
-                <div className="font-mono text-[11px] uppercase tracking-wider text-[#1c1917] font-bold mb-2">
+                <div className="text-[11px] uppercase tracking-wider text-[#1c1917] font-bold mb-2">
                   Standard Studio Deliverables:
                 </div>
                 {[
@@ -297,28 +298,28 @@ export function CostCalculator() {
                   "Post-handover white-glove cleaning & formal 10-year warranty document",
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <span className="material-symbols-outlined text-[16px] text-[#8c4830] shrink-0 mt-0.5">check</span>
-                    <span className="font-sans">{item}</span>
+                    <span className="material-symbols-outlined text-[15px] text-[#8c4830] shrink-0 mt-0.5">check</span>
+                    <span className="font-sans text-[11px] leading-tight">{item}</span>
                   </div>
                 ))}
               </div>
 
               {/* WhatsApp Call to Action */}
-              <div className="pt-4 border-t border-[#e6e2dc] space-y-3">
+              <div className="pt-3 border-t border-[#e6e2dc] space-y-2">
                 <a
                   href={`https://wa.me/${BRAND_INFO.whatsapp}?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleCelebrate}
-                  className="w-full h-11 inline-flex items-center justify-center gap-2 bg-[#1c1917] hover:bg-[#322e2b] text-[#faf8f5] text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
+                  className="w-full h-10 inline-flex items-center justify-center gap-2 bg-[#1c1917] hover:bg-[#322e2b] text-[#faf8f5] text-xs font-sans font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                   data-cursor="WHATSAPP"
                 >
-                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  <span className="material-symbols-outlined text-[16px]">chat</span>
                   <span>Send Estimate to J&M WhatsApp</span>
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                 </a>
 
-                <p className="text-center text-[10px] font-mono text-[#78716c]">
+                <p className="text-center text-[10px] text-[#78716c] font-sans">
                   Direct consultation with J&M Interiors Bangalore (+91 9035 672 941)
                 </p>
               </div>

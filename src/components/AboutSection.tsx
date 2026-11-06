@@ -1,6 +1,3 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CLIENT_DATA } from "@/data/site-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,81 +7,35 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ onOpenConsultation }: AboutSectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Reveal headline on scroll
-      gsap.from(".about-title-reveal", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      // Animate cards staggered on scroll
-      const cards = cardsRef.current?.querySelectorAll(".about-interactive-card");
-      if (cards && cards.length) {
-        gsap.from(cards, {
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 85%",
-          },
-          y: 45,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.9,
-          ease: "power2.out",
-        });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="py-24 px-6 sm:px-8 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc] relative"
-    >
+    <section id="about" className="py-20 px-6 sm:px-8 lg:px-12 bg-[#FAF8F5] border-b border-[#e6e2dc]">
       <div className="max-w-7xl mx-auto">
         {/* Top Header */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start mb-16">
+        <div className="grid lg:grid-cols-12 gap-10 items-start mb-12">
           <div className="lg:col-span-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge variant="clay" className="font-mono text-[10px] tracking-wider">
+            <div className="flex items-center gap-2 mb-3">
+              <Badge variant="clay" className="text-[10px] uppercase tracking-wider font-semibold">
                 {CLIENT_DATA.about.eyebrow}
               </Badge>
-              <span className="font-mono text-xs uppercase tracking-wider text-[#78716c]">
+              <span className="text-xs uppercase tracking-wider text-[#78716c] font-medium">
                 Bangalore, Karnataka
               </span>
             </div>
 
-            <div className="about-title-reveal">
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase font-extrabold text-[#1c1917] leading-[0.98] tracking-tight">
-                YOUR PROFESSIONAL <br />
-                <span className="text-[#8c4830]">ARCHITECTURE</span> <br />
-                PARTNER.
-              </h2>
-            </div>
+            <h2 className="font-sans text-3xl sm:text-5xl uppercase font-bold text-[#1c1917] leading-tight tracking-tight">
+              Your Professional <br />
+              <span className="text-[#8c4830]">Architecture Partner.</span>
+            </h2>
 
-            <p className="mt-6 text-sm sm:text-base text-[#57534e] leading-relaxed font-sans max-w-lg">
+            <p className="mt-5 text-sm sm:text-base text-[#57534e] leading-relaxed font-sans max-w-lg font-normal">
               {CLIENT_DATA.about.body}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-7 flex flex-wrap gap-4">
               <Button
                 onClick={onOpenConsultation}
                 size="lg"
-                className="rounded-xs font-mono text-xs tracking-wider"
+                className="rounded-xs font-sans text-xs font-semibold tracking-wider h-11 px-6"
                 data-cursor="CONSULT"
               >
                 <span>Book Free Consultation</span>
@@ -93,19 +44,19 @@ export function AboutSection({ onOpenConsultation }: AboutSectionProps) {
             </div>
           </div>
 
-          {/* Right Feature Boxes & Pillars */}
-          <div ref={cardsRef} className="lg:col-span-6 space-y-6">
+          {/* Right Feature Boxes & Principles */}
+          <div className="lg:col-span-6 space-y-5">
             <div className="grid sm:grid-cols-2 gap-4">
               {CLIENT_DATA.about.features.map((feat, i) => (
                 <div
                   key={i}
-                  className="about-interactive-card p-7 bg-[#ffffff] border border-[#e6e2dc] hover:border-[#1c1917] transition-all group"
+                  className="p-6 bg-[#ffffff] border border-[#e6e2dc] hover:border-[#1c1917] transition-all group"
                   data-cursor="DISCOVER"
                 >
-                  <span className="material-symbols-outlined text-[#8c4830] text-[28px] mb-3 group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-[#8c4830] text-[24px] mb-2.5">
                     {i === 0 ? "draw" : "engineering"}
                   </span>
-                  <h3 className="font-display text-lg uppercase font-bold text-[#1c1917] mb-2 tracking-tight">
+                  <h3 className="font-sans text-base uppercase font-bold text-[#1c1917] mb-1.5 tracking-tight">
                     {feat.title}
                   </h3>
                   <p className="text-xs text-[#57534e] leading-relaxed font-sans">{feat.desc}</p>
@@ -113,19 +64,19 @@ export function AboutSection({ onOpenConsultation }: AboutSectionProps) {
               ))}
             </div>
 
-            {/* 4 Pillars with Swiss Grid styling */}
-            <div className="about-interactive-card p-6 sm:p-8 bg-[#ffffff] border border-[#e6e2dc]">
-              <div className="flex items-center justify-between pb-3 mb-5 border-b border-[#f0ebe3]">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#8c4830] font-bold">
-                  CORE ARCHITECTURAL PRINCIPLES
+            {/* Core Architectural Principles */}
+            <div className="p-6 bg-[#ffffff] border border-[#e6e2dc]">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#f0ebe3]">
+                <span className="text-xs uppercase tracking-wider text-[#8c4830] font-bold">
+                  Core Architectural Principles
                 </span>
-                <span className="font-mono text-[10px] text-[#78716c]">BENGALURU</span>
+                <span className="text-[11px] text-[#78716c] font-medium">Bangalore</span>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {CLIENT_DATA.about.pillars.map((pillar, idx) => (
                   <div key={idx} className="flex items-start gap-2.5">
-                    <span className="material-symbols-outlined text-[#8c4830] text-[18px] shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[#8c4830] text-[16px] shrink-0 mt-0.5">
                       check_circle
                     </span>
                     <div>

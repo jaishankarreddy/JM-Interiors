@@ -2,11 +2,11 @@
 
 @layer base {
   :root {
-    --font-display: "Syne", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     --font-mono: "Space Mono", monospace;
 
-    /* Light Theme Architectural Stone System */
+    /* Light Theme Architectural Minimal System */
     --background: 36 25% 98%; /* #FAF8F5 */
     --foreground: 24 10% 11%; /* #1C1917 */
     --card: 0 0% 100%;
@@ -21,12 +21,12 @@
     --muted-foreground: 25 6% 44%;
     --accent: 30 18% 92%;
     --accent-foreground: 24 10% 11%;
-    --clay: 16 48% 37%; /* Architectural Terracotta #8C4830 */
+    --clay: 16 48% 37%; /* #8C4830 */
     --clay-foreground: 0 0% 100%;
     --border: 33 15% 88%; /* #E6E2DC */
     --input: 33 15% 88%;
     --ring: 24 10% 11%;
-    --radius: 0.125rem;
+    --radius: 0.25rem;
   }
 
   * {
@@ -50,8 +50,7 @@
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
-  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .font-sans {
@@ -76,29 +75,6 @@
   white-space: nowrap;
   direction: ltr;
   vertical-align: middle;
-}
-
-/* Obys Grids inspired architectural paper & grid lines */
-.bg-paper {
-  background-color: #faf8f5;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
-  background-size: 72px 72px;
-}
-
-.bg-paper-dense {
-  background-color: #faf8f5;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Line reveal mask wrapper */
-.mask-line {
-  overflow: hidden;
-  display: block;
 }
 
 /* Custom minimal scrollbar */

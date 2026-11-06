@@ -45,37 +45,35 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Mark with Syne geometric boldness */}
-        <a href="#" className="flex items-center gap-3 shrink-0 group">
-          <span className="font-display text-xl sm:text-2xl tracking-tighter text-[#1c1917] group-hover:text-[#8c4830] transition-colors whitespace-nowrap uppercase">
-            JM Interiors
+        {/* Brand Mark - Clean, Uniform Sans Typography */}
+        <a href="#" className="flex items-center gap-2 group shrink-0">
+          <span className="font-sans font-bold text-lg sm:text-xl tracking-tight text-[#1c1917] group-hover:text-[#8c4830] transition-colors whitespace-nowrap">
+            JM INTERIORS
           </span>
-          <span className="hidden sm:inline-block h-4 w-px bg-[#d6d0c7]" />
-          <span className="hidden sm:inline-block text-[10px] font-mono tracking-widest text-[#78716c] uppercase whitespace-nowrap">
-            Bengaluru / Architectural Fitouts
+          <span className="text-[10px] uppercase tracking-widest text-[#78716c] font-medium hidden sm:inline-block">
+            • Bangalore
           </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Center Navigation Links - Uniform Font, Spacious, Minimal */}
+        <nav className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleScrollTo(e, link.href)}
-              className="text-[12px] font-sans font-medium uppercase tracking-widest text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#1c1917] hover:after:w-full after:transition-all"
+              className="text-[13px] font-sans font-medium text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap py-1"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Right CTA & Phone */}
+        {/* Right CTA & Phone - Uniform & Minimal */}
         <div className="hidden sm:flex items-center gap-5 shrink-0">
           <a
             href={`tel:${CLIENT_DATA.contact.rawPhone}`}
-            className="flex items-center gap-2 text-xs font-mono font-medium text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap"
-            title="Call Bengaluru Office"
+            className="flex items-center gap-1.5 text-xs font-sans font-medium text-[#57534e] hover:text-[#1c1917] transition-colors whitespace-nowrap"
           >
             <span className="material-symbols-outlined text-[#8c4830] text-[16px]">call</span>
             <span className="whitespace-nowrap">{CLIENT_DATA.contact.phone}</span>
@@ -84,10 +82,10 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
           <Button
             onClick={onOpenConsultation}
             size="sm"
-            className="rounded-xs px-4 h-9 tracking-wider text-[11px] font-mono whitespace-nowrap"
+            className="rounded-xs px-4 h-9 font-sans text-xs font-semibold whitespace-nowrap"
           >
             <span>Get In Touch</span>
-            <span className="material-symbols-outlined text-[14px] ml-1.5">north_east</span>
+            <span className="material-symbols-outlined text-[14px] ml-1">north_east</span>
           </Button>
         </div>
 
@@ -107,9 +105,9 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
       {mobileOpen && (
         <div className="lg:hidden bg-[#faf8f5] border-b border-[#e6e2dc] px-6 py-6 shadow-lg animate-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-3">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-[#78716c] pb-2 border-b border-[#e6e2dc] flex items-center justify-between">
+            <div className="text-[11px] font-sans uppercase tracking-widest text-[#78716c] pb-2 border-b border-[#e6e2dc] flex items-center justify-between font-semibold">
               <span>JM Interiors</span>
-              <span>Bengaluru, Karnataka</span>
+              <span>Bangalore</span>
             </div>
 
             {navLinks.map((link) => (
@@ -117,7 +115,7 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-xs uppercase tracking-widest text-[#1c1917] hover:text-[#8c4830] py-2.5 border-b border-[#f0ebe3] flex items-center justify-between"
+                className="text-sm font-sans font-medium text-[#1c1917] hover:text-[#8c4830] py-2 border-b border-[#f0ebe3] flex items-center justify-between"
               >
                 <span>{link.label}</span>
                 <span className="material-symbols-outlined text-[16px] text-[#a8a29e]">arrow_forward</span>
@@ -127,7 +125,7 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
             <div className="pt-3 flex flex-col gap-2.5">
               <a
                 href={`tel:${CLIENT_DATA.contact.rawPhone}`}
-                className="w-full py-2.5 px-4 text-center border border-[#d6d0c7] text-xs font-mono font-medium text-[#1c1917] flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 text-center border border-[#d6d0c7] text-xs font-sans font-medium text-[#1c1917] flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-[16px] text-[#8c4830]">call</span>
                 <span>{CLIENT_DATA.contact.phone}</span>
@@ -138,7 +136,7 @@ export function Navbar({ onOpenConsultation }: NavbarProps) {
                   setMobileOpen(false);
                   onOpenConsultation();
                 }}
-                className="w-full h-10 tracking-widest text-xs font-mono"
+                className="w-full h-10 font-sans text-xs font-semibold"
               >
                 Get In Touch
               </Button>

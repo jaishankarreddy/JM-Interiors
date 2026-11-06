@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { CLIENT_DATA } from "@/data/site-data";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 interface HeroProps {
   onOpenConsultation: () => void;
@@ -12,60 +11,24 @@ interface HeroProps {
 
 export function Hero({ onOpenConsultation, onExploreServices, onOpenCalculator }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const titleLinesRef = useRef<HTMLDivElement>(null);
-  const imageFrameRef = useRef<HTMLDivElement>(null);
-  const gridLinesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Grid lines entrance animation (Obys Grids signature)
-      gsap.from(".hero-grid-line", {
-        scaleX: 0,
-        transformOrigin: "left center",
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.inOut",
+      gsap.from(".hero-anim-text", {
+        y: 20,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.1,
+        ease: "power3.out",
       });
 
-      // 2. Text lines masked slide up (Mecha & GSAP signature)
-      const lines = titleLinesRef.current?.querySelectorAll(".hero-reveal-line");
-      if (lines && lines.length) {
-        gsap.from(lines, {
-          yPercent: 120,
-          rotate: 1.5,
-          duration: 1.2,
-          stagger: 0.14,
-          ease: "power4.out",
-          delay: 0.2,
-        });
-      }
-
-      // 3. Image clip path & scale reveal
-      if (imageFrameRef.current) {
-        gsap.from(imageFrameRef.current, {
-          clipPath: "inset(100% 0% 0% 0%)",
-          scale: 1.1,
-          duration: 1.4,
-          delay: 0.4,
-          ease: "power3.inOut",
-        });
-      }
-
-      // 4. Parallax effect on mouse movement
-      const onMouseMove = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const xOffset = (clientX / window.innerWidth - 0.5) * 16;
-        const yOffset = (clientY / window.innerHeight - 0.5) * 16;
-        gsap.to(".hero-parallax-target", {
-          x: xOffset,
-          y: yOffset,
-          duration: 1,
-          ease: "power2.out",
-        });
-      };
-
-      window.addEventListener("mousemove", onMouseMove);
-      return () => window.removeEventListener("mousemove", onMouseMove);
+      gsap.from(".hero-image-box", {
+        opacity: 0,
+        y: 25,
+        duration: 1,
+        delay: 0.2,
+        ease: "power2.out",
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -74,161 +37,120 @@ export function Hero({ onOpenConsultation, onExploreServices, onOpenCalculator }
   return (
     <section
       ref={containerRef}
-      className="pt-28 pb-20 px-6 sm:px-8 lg:px-12 bg-paper border-b border-[#e6e2dc] relative overflow-hidden"
+      className="pt-28 pb-16 px-6 sm:px-8 lg:px-12 bg-[#faf8f5] border-b border-[#e6e2dc]"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Top Architectural Coordinate Strip */}
-        <div className="hero-grid-line flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-10 border-b border-[#e6e2dc] gap-3 text-xs font-mono text-[#78716c]">
-          <div className="flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-[#8c4830] animate-pulse" />
-            <span className="text-[11px] uppercase tracking-widest text-[#1c1917] font-semibold">
+        {/* Top Minimal Eyebrow */}
+        <div className="hero-anim-text flex items-center justify-between pb-4 mb-8 border-b border-[#e6e2dc] text-xs font-sans text-[#78716c]">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8c4830]" />
+            <span className="uppercase tracking-widest text-[#1c1917] font-semibold text-[11px]">
               {CLIENT_DATA.tagline}
             </span>
-            <span className="text-[#d6d0c7]">/</span>
-            <span className="text-[11px] text-[#78716c] uppercase">
-              {CLIENT_DATA.fullName}
-            </span>
           </div>
+          <span className="text-[11px] font-medium text-[#78716c]">
+            Bangalore, Karnataka
+          </span>
+        </div>
 
-          <div className="text-[11px] tracking-wider text-[#78716c] flex items-center gap-3">
-            <span>12°53'N 77°38'E</span>
-            <span>•</span>
-            <span>BENGALURU</span>
-            <span>•</span>
-            <span className="text-[#8c4830] font-bold">EST. 2014</span>
+        {/* Minimal Hero Headline & Description */}
+        <div className="max-w-4xl mb-12">
+          <h1 className="hero-anim-text font-sans font-bold text-4xl sm:text-6xl lg:text-[4.5rem] uppercase tracking-tight text-[#1c1917] leading-[1.05]">
+            Designing workspaces that inspire <span className="text-[#8c4830]">daily brilliance</span> & living.
+          </h1>
+
+          <p className="hero-anim-text mt-5 text-sm sm:text-base text-[#57534e] leading-relaxed max-w-2xl font-sans font-normal">
+            {CLIENT_DATA.heroDescription}
+          </p>
+
+          <div className="hero-anim-text flex flex-wrap items-center gap-3.5 pt-6">
+            <Button
+              onClick={onOpenConsultation}
+              size="lg"
+              className="rounded-xs font-sans text-xs font-semibold tracking-wider h-11 px-6"
+              data-cursor="CONTACT"
+            >
+              <span>Get In Touch</span>
+              <span className="material-symbols-outlined text-[16px] ml-1.5">arrow_forward</span>
+            </Button>
+
+            <Button
+              onClick={onExploreServices}
+              variant="outline"
+              size="lg"
+              className="rounded-xs font-sans text-xs font-semibold tracking-wider h-11 px-6"
+              data-cursor="SERVICES"
+            >
+              Explore Services
+            </Button>
+
+            <button
+              onClick={onOpenCalculator}
+              className="text-xs font-sans font-semibold text-[#57534e] hover:text-[#1c1917] transition-colors ml-2 py-2 cursor-pointer"
+            >
+              Cost Estimator ↓
+            </button>
           </div>
         </div>
 
-        {/* Hero Headline - Bold Architectural Grotesque Typography */}
-        <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
-          <div ref={titleLinesRef} className="lg:col-span-8">
-            <div className="mask-line">
-              <h1 className="hero-reveal-line font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] uppercase font-extrabold leading-[0.98] tracking-tighter text-[#1c1917]">
-                DESIGNING WORKSPACES
-              </h1>
-            </div>
-            <div className="mask-line">
-              <div className="hero-reveal-line font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] uppercase font-extrabold leading-[0.98] tracking-tighter text-[#8c4830]">
-                THAT INSPIRE DAILY
-              </div>
-            </div>
-            <div className="mask-line">
-              <div className="hero-reveal-line font-display text-3xl sm:text-5xl md:text-6xl lg:text-[4.6rem] uppercase font-extrabold leading-[1] tracking-tighter text-[#1c1917]">
-                BRILLIANCE & LIVING.
-              </div>
-            </div>
-          </div>
-
-          {/* Side Context & Callouts */}
-          <div className="lg:col-span-4 flex flex-col justify-end space-y-6">
-            <div className="border-l-2 border-[#8c4830] pl-4">
-              <p className="text-xs sm:text-sm text-[#57534e] leading-relaxed font-sans">
-                {CLIENT_DATA.heroDescription}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <Button
-                onClick={onOpenConsultation}
-                size="lg"
-                className="rounded-xs font-mono text-xs tracking-wider"
-                data-cursor="CONTACT"
-              >
-                <span>Get In Touch</span>
-                <span className="material-symbols-outlined text-[16px] ml-1.5">arrow_forward</span>
-              </Button>
-
-              <Button
-                onClick={onExploreServices}
-                variant="outline"
-                size="lg"
-                className="rounded-xs font-mono text-xs tracking-wider"
-                data-cursor="EXPLORE"
-              >
-                Our Services
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Imagery Showcase with Mecha / Obys Grid Composition */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-          {/* Main Large Image */}
+        {/* Hero Imagery Showcase - Clean, Fully Visible, Minimal */}
+        <div className="hero-image-box grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           <div
-            ref={imageFrameRef}
-            className="md:col-span-8 relative aspect-[16/10] md:aspect-auto md:h-[500px] overflow-hidden border border-[#e6e2dc] bg-[#f0ebe3]"
+            className="lg:col-span-8 relative aspect-[16/10] sm:h-[460px] overflow-hidden border border-[#e6e2dc] bg-[#f0ebe3]"
             data-cursor="VIEW"
           >
             <img
               src="/assets/hero.jpg"
               alt="JM Interiors Bangalore Architecture & Interior Design"
-              className="hero-parallax-target w-full h-full object-cover object-center scale-105"
+              className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-            {/* Architectural Grid Tag on Image */}
-            <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-xs font-mono text-white">
-              <span className="bg-[#1c1917]/80 backdrop-blur-xs px-3 py-1.5 border border-white/20">
-                PLATE 01 — WORKSPACE ARCHITECTURE & LIVING
-              </span>
-              <span className="hidden sm:inline-block bg-[#1c1917]/80 backdrop-blur-xs px-3 py-1.5 border border-white/20">
-                BENGALURU • 45-DAY DISCIPLINE
-              </span>
+            <div className="absolute bottom-4 left-4 right-4 bg-[#faf8f5]/90 backdrop-blur-xs border border-[#e6e2dc] px-4 py-2 flex items-center justify-between text-xs font-sans">
+              <span className="font-medium text-[#1c1917]">Workspaces & Living Environments</span>
+              <span className="text-[#78716c] text-[11px]">Turnkey Execution • Bangalore</span>
             </div>
           </div>
 
-          {/* Secondary Structural Box */}
-          <div className="md:col-span-4 flex flex-col justify-between gap-6">
+          <div className="lg:col-span-4 flex flex-col justify-between gap-6">
             <div
-              className="relative aspect-[4/3] md:h-[240px] overflow-hidden border border-[#e6e2dc] bg-[#f0ebe3]"
+              className="relative h-56 sm:h-60 overflow-hidden border border-[#e6e2dc] bg-[#f0ebe3]"
               data-cursor="WORK"
             >
               <img
                 src="/assets/project-office.jpg"
                 alt="Office Interiors Bangalore"
-                className="hero-parallax-target w-full h-full object-cover object-center scale-105"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute top-3 left-3">
-                <span className="bg-[#faf8f5] text-[#1c1917] font-mono text-[10px] uppercase px-2 py-0.5 border border-[#e6e2dc]">
-                  Commercial Fitout
-                </span>
+              <div className="absolute top-3 left-3 bg-[#faf8f5] text-[#1c1917] text-[10px] uppercase font-semibold px-2 py-0.5 border border-[#e6e2dc]">
+                Commercial Fitout
               </div>
             </div>
 
-            {/* Editorial Statement Card */}
-            <div className="p-7 border border-[#e6e2dc] bg-[#ffffff] flex-1 flex flex-col justify-between">
+            <div className="p-6 border border-[#e6e2dc] bg-[#ffffff] flex-1 flex flex-col justify-between">
               <div>
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#8c4830] block mb-2 font-bold">
-                  ABOUT JM INTERIORS
+                <span className="text-[11px] font-sans uppercase tracking-wider text-[#8c4830] font-bold block mb-2">
+                  About JM Interiors
                 </span>
-                <p className="font-display text-xl sm:text-2xl text-[#1c1917] leading-tight uppercase">
-                  "ANY SPACE ATTACHED TO AMBITION, STYLE & PRODUCTIVITY."
+                <p className="font-sans text-lg font-semibold text-[#1c1917] leading-snug">
+                  "The vision: To make any space completely attached to ambition, style, and productivity."
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#f0ebe3] flex items-center justify-between mt-4">
-                <button
-                  onClick={onOpenCalculator}
-                  className="text-xs uppercase tracking-widest font-mono font-semibold text-[#1c1917] hover:text-[#8c4830] transition-colors flex items-center gap-1.5 cursor-pointer"
-                  data-cursor="CALC"
-                >
-                  <span>Calculate Cost</span>
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                </button>
-                <span className="font-mono text-[11px] text-[#78716c]">BANGALORE</span>
+              <div className="pt-4 border-t border-[#f0ebe3] flex items-center justify-between text-xs text-[#78716c] mt-3">
+                <span>10+ Years of Craftsmanship</span>
+                <span className="font-medium text-[#1c1917]">Begur, Bengaluru</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Studio Metrics Row with Animated Grid Border */}
-        <div className="hero-grid-line mt-14 pt-10 border-t border-[#e6e2dc] grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Minimal Metrics Row */}
+        <div className="mt-12 pt-8 border-t border-[#e6e2dc] grid grid-cols-2 md:grid-cols-4 gap-6">
           {CLIENT_DATA.about.stats.map((stat, i) => (
-            <div key={i} className="group">
-              <div className="font-display text-4xl sm:text-5xl md:text-6xl text-[#1c1917] tracking-tighter uppercase group-hover:text-[#8c4830] transition-colors">
+            <div key={i}>
+              <div className="font-sans text-3xl sm:text-4xl font-bold text-[#1c1917] tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[#1c1917] font-bold mt-2">
+              <div className="text-xs uppercase tracking-wider text-[#1c1917] font-semibold mt-1">
                 {stat.label}
               </div>
               <p className="text-[11px] text-[#78716c] mt-0.5 font-sans">{stat.desc}</p>
